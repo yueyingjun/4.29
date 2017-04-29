@@ -3,54 +3,43 @@ angular.module("myapp",[])
     // 源数据
     $scope.data=localStorage.data?JSON.parse(localStorage.data):[];
     //完成的数据
-
     $scope.done=localStorage.done?JSON.parse(localStorage.done):[];
-
-
-
-
     //是否显示完成列表
-
     $scope.isshow=true;
 
     //当前选择的事项
     $scope.currentIndex=0;
     $scope.currentCon=$scope.data[$scope.currentIndex];
 
-
     //监控search
-
 
     $scope.search="";
     $scope.$watch("search",function(){
         var arr=$filter("filter")($scope.data,{title:$scope.search});
         $scope.currentIndex=0;
-        $scope.currentCon=arr[$scope.currentIndex]
-
-
+        $scope.currentCon=arr[$scope.currentIndex];
     })
-
 
     //添加列表
       //1. 唯一id    2.  title
     $scope.add=function(){
+        var str="";
+        var date=new Date();
+        var year=date.getFullYear();
+        var month=date.getMonth()+1;
+        var day=date.getDate();
+        str=year+"-"+month+"-"+day+"-";
         var obj={};
         obj.id=getMaxId($scope.data);
-        obj.title="新建事项"+obj.id;
+        obj.title=str+obj.id;
         obj.son=[];
-
         $scope.data.push(obj);
-
-
         $scope.currentIndex=getIndex($scope.data,obj.id);
         $scope.currentCon=$scope.data[$scope.currentIndex];
-
         localStorage.data=JSON.stringify($scope.data);
     }
 
-
     /*删除列表*/
-
     $scope.removeList=function(id){
        angular.forEach($scope.data,function(obj,index){
            if(id==obj.id){
@@ -63,40 +52,38 @@ angular.module("myapp",[])
                    $scope.currentIndex=$scope.data.length-1;
                    $scope.currentCon=$scope.data[$scope.currentIndex];
                }
-
-
            }
        })
-
-
-
         localStorage.data=JSON.stringify($scope.data);
     }
 
     /*列表获得焦点*/
 
     $scope.focus=function(id){
-
             var index=getIndex($scope.data,id);
             $scope.currentIndex=index;
             $scope.currentCon=$scope.data[$scope.currentIndex];
-
     }
 
     /*失去焦点*/
 
     $scope.blur=function(id){
-
         localStorage.data=JSON.stringify($scope.data);
     }
 
     /*添加条目*/
 
     $scope.addOpt=function(){
+        var str="";
+        var date=new Date();
+        var hours=date.getHours();
+        var minutes=date.getMinutes();
+        var second=date.getSeconds();
+        str=hours+":"+minutes+":"+second+"-";
         var obj={};
         var id=getMaxId($scope.currentCon.son);
         obj.id=id;
-        obj.title="新建条目"+obj.id;
+        obj.title=str+obj.id;
         $scope.currentCon.son.push(obj);
 
         localStorage.data=JSON.stringify($scope.data);
@@ -124,18 +111,13 @@ angular.module("myapp",[])
 
     /*显示完成列表*/
     $scope.showdone=function(){
-
             $scope.isshow = false;
-
     }
 
     /*显示内容*/
-
     $scope.showCon=function(){
-
         $scope.isshow = true;
     }
-
     /*删除已完成*/
     $scope.removeDone=function(id){
         var index=getIndex($scope.done,id);
@@ -144,10 +126,7 @@ angular.module("myapp",[])
 
     }
 
-
-
-
-
+    /*获得最后一个下标*/
     function getMaxId(arr){
         if(arr.length==0){
             return 1;
@@ -163,15 +142,13 @@ angular.module("myapp",[])
         }
     }
 
-
+    /*点击的id所属下标*/
     function getIndex(arr,id){
         for(var i=0;i<arr.length;i++){
             if(arr[i].id==id){
                return i;
             }
         }
-
-
     }
 
 
