@@ -27,11 +27,8 @@ angular.module("note",[])
                         $scope.cIndex=index-1;
                         $scope.Current=$scope.data[$scope.cIndex];
                 }else{
-                    if(index==$scope.cIndex){
                         $scope.cIndex=$scope.data.length-1;
                         $scope.Current=$scope.data[$scope.cIndex];
-                    }
-
                 }
 
                 localStorage.data=JSON.stringify($scope.data);
