@@ -1,0 +1,123 @@
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height: 100%;
+    overflow: hidden;
+}
+.container-fluid{
+    width:100%;
+    height: 100%;
+}
+.row{
+    width:100%;
+    height: 100%;
+}
+.left{
+    height: 100%;
+    border-right:1px solid #ccc;
+    position: relative;
+}
+.seach{
+    margin-top: 5px;
+}
+.box{
+    width: 100%;
+}
+.ybox{
+    width:100%;
+    height: 30px;
+    display: flex;
+    line-height: 30px;
+    justify-content: space-between;
+    border-bottom:1px solid #ccc;
+}
+.ybox .ok,.ybox .db{
+    margin-top: 5px;
+}
+.ybox span:nth-child(3){
+    color:red;
+}
+.listnum{
+    width:100%;
+    position: relative;
+    cursor: pointer;
+}
+.listnum input{
+    margin-top: 3px;
+    border:none;
+}
+.listnum input:focus{
+    outline:none;
+}
+.removelist{
+    position: absolute;
+    right:0px;
+    top:5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opcity 1s linear;
+}
+.listnum:hover .removelist{
+    visibility: visible;
+    opacity: 1;
+}
+.footer{
+    width:100%;
+    height: 30px;
+    position: absolute;
+    text-align: center;
+    line-height: 30px;
+    bottom:10px;
+    cursor: pointer;
+}
+.right{
+    height: 100%;
+}
+.right .header{
+    width:100%;
+    height: 10%;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    line-height: 60px;
+    justify-content: space-between;
+    border-bottom:1px solid #ccc;
+    cursor: pointer;
+
+}
+.optbox{
+    width:100%;
+    /*position: relative;*/
+    cursor: pointer;
+}
+.doneBtn{
+    border-radius: 50%;
+    width:10px;height:10px;
+    border:1px solid #000;
+    position: absolute;
+    left:0; top:8px;
+}
+.optbox .opt{
+    height: 30px;
+    position: relative;
+}
+.opt input{
+    margin-top: 3px;
+    border:none;
+    margin-left: 15px;
+}
+.opt input:focus{
+    outline:none;
+}
+.opt .removeopt{
+    position: absolute;
+    right:0px;
+    top:5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opcity 1s linear;
+}
+.opt:hover .removeopt{
+    visibility: visible;
+    opacity: 1;
+}
