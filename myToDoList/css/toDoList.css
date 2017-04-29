@@ -1,0 +1,51 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+a:hover{
+    text-decoration: none;
+}
+.box{
+    width:100%;
+    height:100%;
+}
+.mySearch{
+    margin-top:50px;
+}
+.right,.left{
+    height:100%;
+    float: left;
+    border: 2px solid #eeeeee;
+}
+.panel .panel-heading h4 a{
+    width:100%;
+    height:100%;
+    display: inline-block;
+    text-decoration: none;
+}
+.left .all .panel .wdbLeftBox .panel-body .wdbLeftAdd li a{
+    text-align: center;
+}
+.everyone{
+    position: relative;
+}
+.leftDel{
+    width:15px;
+    height:15px;
+    border-radius: 50%;
+    background: #EFAD4C;
+    position: absolute;
+    right:25px;
+    top:25px;
+}
+.rightDel{
+    width:15px;
+    height:15px;
+    border-radius: 50%;
+    background: #EFAD4C;
+    position: absolute;
+    right:25px;
+    top:25px;
+    z-index: 99;
+}
+
