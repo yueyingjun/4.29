@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="./bootstrap.css">
+<link rel="stylesheet" href="notebook.css">
+<script src="../javascript/angular.min.js"></script>
+<script src="notebook.js"></script>
+<body ng-app="note" ng-controller="ctrl">
+<div class="box">
+    <div class="left col-lg-3 col-xs-4 col-md-4">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                <div class="input-group">
+                    <div class="input-group-addon">搜索</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
+                </div>
+            </div>
+        </form>
+        <div>
+            <span class="glyphicon glyphicon-th-list all">操作列表</span>
+        </div>
+        <div class="addList">
+            <span>
+                添加文档
+            </span>
+            <span class="glyphicon glyphicon-plus add" ng-click="add()"></span>
+        </div>
+        <div class="weidu" ng-click="finishall()">
+            <span class="glyphicon glyphicon-list-alt read">已处理事件<b>{{finish.length}}</b></span>
+        </div>
+        <div class="listbox">
+            <span class="glyphicon glyphicon-th-large lists">文档列表</span>
+               <div class="listall">
+
+                   <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id">
+                    <span>
+                        <input type="text" value="新建事项" ng-model="item.title" ng-click="con()" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                    </span>
+                        <span class="glyphicon glyphicon-minus new" ng-click="del(item.id)"></span>
+                    </div>
+               </div>
+        </div>
+
+    </div>
+    <div class="right col-lg-9 col-xs-8 col-md-8" ng-show="show==true">
+        <div class="right_top" >
+            <div >
+                <span>
+                    <input type="text" ng-model="Current.title" ng-blur="changetwo()" value="">
+                </span>
+            </div>
+            <div >
+                <span class="addtiao glyphicon glyphicon-plus" ng-click="addtiao()">添加条目</span>
+            </div>
+        </div>
+        <div class="addtiao">
+            <div class="tiao" ng-repeat="item in Current.son track by item.id">
+                <span class="glyphicon glyphicon-ok" ng-click="into(item.id)">
+
+                </span>
+                <span>
+                    <input type="text" ng-model="item.title"  ng-blur="changetwo(item.id)" value="新建文件">
+                </span>
+                <span class="glyphicon glyphicon-remove re" ng-click="deltiao(item.id)"></span>
+            </div>
+
+        </div>
+    </div>
+    <div class="right col-lg-9 col-xs-8 col-md-8" ng-show="show==false">
+        <div class="right_top" >
+            <div >
+                <span>
+                    <input type="text" value="完成列表">
+                </span>
+            </div>
+        </div>
+        <div class="addtiao">
+            <div class="tiao" ng-repeat="item in finish track by item.id">
+                <span class="glyphicon glyphicon-ok-circle" >
+
+                </span>
+                <span>
+                    <input type="text" ng-model="item.title"  value="新建文件">
+                </span>
+                <span class="glyphicon glyphicon-remove re" ng-click="delall(item.id)"></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
