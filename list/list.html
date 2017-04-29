@@ -36,7 +36,7 @@
                     <span ng-click="showCon()">代办事项</span>
                     <span class="badge">{{len}}</span>
                 </div>
-                <div class="list-group" ng-repeat="item in data track by item.id" ng-click="showCon()">
+                <div class="list-group" ng-repeat="item in data | filter:{title:search} track by item.id" ng-click="showCon()">
                     <input type="text" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
                     <span class="glyphicon glyphicon-trash" ng-click="removeList(item.id)"></span>
                 </div>
