@@ -1,0 +1,97 @@
+html,body{
+    width: 100%;height:100%;overflow: hidden;
+}
+.container-fluid{
+    height: 100%;
+}
+.row{
+    height: 100%;
+}
+.left{
+    height: 100%;
+    border-right:1px solid #ccc;position: relative;
+}
+.search{
+    margin-top: 10px;
+}
+.mg{
+    margin-bottom: 10px;
+}
+.finish{
+    cursor: pointer;
+}
+.wait{
+    cursor: pointer;
+}
+.finish span:nth-child(3){
+    color: red;
+}
+
+.addlist{
+    cursor: pointer;
+    position: absolute;bottom: 20px;
+}
+.listbox{
+    width: 100%;
+    height: 72%;
+    overflow: auto;
+}
+.addOpt{
+    position: relative;
+    /*transition:opacity 1s linear;*/
+}
+.addOpt input{
+    border: none;
+    transition:border 0.3s linear;
+}
+.addOpt input:focus{
+    border:1px solid #ccc;
+    outline: none;
+}
+.addOpt span{
+    position: absolute;right: 10px;top:5px;cursor: pointer;
+}
+.right{
+    height: 100%;
+}
+.header{
+    width: 100%;height: 10%;border-bottom: 1px solid #ccc;position: relative;
+}
+.header>span{
+    position: absolute;left:10px;bottom: 5px;font-size: 16px;
+}
+.header div{
+    position: absolute;right:10px;bottom:5px;font-size: 16px;cursor: pointer;
+}
+.optBox{
+    margin-top: 10px;
+}
+.opt{
+    width:100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.doneBtn{
+    border-radius: 50%;
+    width:10px;height:10px;
+    border:1px solid #000;
+    position: absolute;
+    left:0;top:6px;
+    cursor: pointer;
+}
+.opt input:focus{
+    outline: none;
+}
+
+.opt input{
+    width:80%;margin-left:20px;
+    border:none;
+}
+.removeOpt{
+    position: absolute;
+    right:10px;top:6px;
+    cursor: pointer;
+}
+
