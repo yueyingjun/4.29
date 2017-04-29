@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/todulist.css">
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/todolist.js"></script>
+
+</head>
+<body>
+<div class="container-fluid" ng-app="myapp" ng-controller="control">
+    <div class="row">
+        <div class="left col-xs-5 col-sm-4 col-md-3">
+            <div class="col-lg-12 searchBox">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." ng-model="search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="doneBox">
+                <span class="glyphicon glyphicon-ok-circle doneIcon"></span>
+                <span ng-click="showdone()">已完成</span>
+                <span class="donesz">{{done.length}}</span>
+            </div>
+
+            <div class="doneBox">
+                <span class="glyphicon glyphicon-th-list doneIcon"></span>代办事项
+            </div>
+
+            <div class="list">
+                <div class="doneBox2" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showCon()">
+                    <input type="text" name="creat" placeholder="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                    <span class="glyphicon glyphicon-trash removeBtn" ng-click="removeList(item.id)"></span>
+                </div>
+            </div>
+
+
+            <div class="addBox" ng-click="add()">
+                <span class="glyphicon glyphicon-plus doneIcon"></span>添加事项
+            </div>
+        </div>
+        <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+            <div class="rigHeader">
+                <div class="doneBox3">
+                    <div class="title"> {{currentCon.title}}</div>
+                </div>
+
+                <div class="addBox2">
+                    <span class="glyphicon glyphicon-plus doneIcon"></span>
+                    <span class="addOpt" ng-click="addOpt()">添加条目</span>
+                </div>
+            </div>
+            <div class="rigContent">
+                <div class="tiaomuBox" ng-repeat="item in currentCon.son track by item.id">
+                    <div class="doneCircle" ng-click="doneFun(item.id)"></div>
+                    <input type="text" ng-model="item.title" ng-blur="blur()">
+                    <span class="glyphicon glyphicon-trash removeBtn" ng-click="delOpt(item.id)"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+            <div class="rigHeader">
+                <div class="doneBox3">
+                    <div class="title">完成列表</div>
+                </div>
+            </div>
+            <div class="rigContent">
+                <div class="tiaomuBox" ng-repeat="item in done track by item.id">
+                    <input type="text" ng-model="item.title" ng-blur="blur()">
+                    <span class="glyphicon glyphicon-trash removeBtn" ng-click="removeDone(item.id)"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script>
+//    localStorage.num=20;
+//    locaoStorage.setItem("num",20);设置某一条
+//    localStorage.getItem("num");获取某一条
+//    localStorage.removeItem("num");删除某一条
+//    localStorage.clear();删除全部
+//    var info=[{name:"zhangsan",age:18},{name:"lisi",age:19}];
+//        localStorage.info=JSON.stringify(info);转换成字符串
+//    JSON.parse(localStorage.info).name转换成对象
+
+
+</script>
+</html>

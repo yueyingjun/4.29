@@ -1,0 +1,117 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+.container-fluid,.row{
+    width:100%;
+    height:100%;
+}
+input{
+    border:none;
+}
+input:focus{
+    outline:none;
+    /*box-shadow: 0;*/
+}
+.left{
+    height:100%;
+    border-right:1px solid silver;
+    padding:15px 0;
+}
+
+.searchBox{
+    margin-bottom: 15px;
+}
+.doneBox{
+    padding: 5px 0;
+    margin-left:15px;
+    font-weight: bold;
+}
+
+.doneIcon{
+    margin-right:8px;
+}
+.donesz{
+    color:red;
+}
+.list{
+    width:100%;
+}
+.doneBox2{
+    padding: 5px 0;
+    margin-left:15px;
+    font-weight: bold;
+    position: relative;
+}
+
+/*垃圾桶*/
+.removeBtn{
+    position: absolute;
+    right:15px;
+    top:10px;
+    visibility: hidden;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -ms-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+}
+.doneBox2:hover .removeBtn,.tiaomuBox:hover .removeBtn{
+    visibility: visible;
+    opacity:1;
+}
+.addBox{
+    padding:5px 0;
+    position: absolute;
+    right:30px;
+    bottom:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+
+
+.rigHeader{
+    width:90%;
+    margin:auto;
+    padding: 15px 0;
+    border-bottom:1px solid silver;
+    display: flex;
+    justify-content: space-between;
+}
+.rigHeader .addBox2{
+    padding:5px 0;
+    bottom:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+.doneBox3{
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+
+
+.rigContent{
+    width:90%;
+    margin:auto;
+}
+.tiaomuBox{
+    width:100%;
+    padding: 10px 0;
+    position: relative;
+    border-bottom: 1px dotted silver;
+}
+.doneCircle{
+    display: inline-block;
+    width:12px;
+    height:12px;
+    border:1px solid slategrey;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border-radius:50%;
+    margin-right:5px;
+}
+.tiaomuBox .removeBtn{
+    right:0;
+}
