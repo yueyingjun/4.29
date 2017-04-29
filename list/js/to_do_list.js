@@ -17,6 +17,7 @@ angular.module("lyApp",[])
         //添加列表
             //1.唯一id； 2.title
         $scope.add=function () {
+            $scope.len=0;
             var obj={};
             obj.id=getMaxIndex($scope.data);
             obj.title="新建事项"+obj.id;
@@ -48,17 +49,20 @@ angular.module("lyApp",[])
             }
         }
         //获取子信息的数目
-        // $scope.len=0;
-        if($scope.data.length!==0){
-            $scope.len="";
-            angular.forEach($scope.data,function (obj,index) {
-                $scope.len+=$scope.data[index].son.length+"+";
-            });
-            $scope.len=eval($scope.len.slice(0,-1));
-            // console.log($scope.len);
-        }else if($scope.data.length==0){
+        if($scope.data.length==0){
            $scope.len=0; 
         }
+        // $scope.len=0;
+        // if($scope.data.length!==0){
+        //     $scope.len="";
+        //     angular.forEach($scope.data,function (obj,index) {
+        //         $scope.len+=$scope.data[index].son.length+"+";
+        //     });
+        //     $scope.len=eval($scope.len.slice(0,-1));
+        //     // console.log($scope.len);
+        // }else if($scope.data.length==0){
+        //    $scope.len=0; 
+        // }
 
         // //删除
         $scope.removeList=function (id) {
