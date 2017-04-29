@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/to_do_list.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/to_do_list.js"></script>
+</head>
+<body>
+    <div class="container-fluid" ng-app="lyApp" ng-controller="ctrl">
+        <div class="row">
+            <div class="left col-xs-4 col-sm-3 col-md-2">
+                <!--搜索-->
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search" ng-model="search">
+                    </div>
+                </div>
+                <!--列表-->
+                <div class="list-group">
+                    <span class="glyphicon glyphicon-th"></span>
+                    <span ng-click="showDone()">已完成事项</span>
+                    <span class="badge">{{done.length}}</span>
+                </div>
+                <div class="list-group">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    <span ng-click="showCon()">代办事项</span>
+                    <span class="badge">{{len}}</span>
+                </div>
+                <div class="list-group" ng-repeat="item in data track by item.id" ng-click="showCon()">
+                    <input type="text" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                    <span class="glyphicon glyphicon-trash" ng-click="removeList(item.id)"></span>
+                </div>
+
+                <!--添加事项-->
+                <div class="list-group add" ng-click="add()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    添加事项
+                </div>
+            </div>
+            <div class="right col-xs-8 col-sm-9 col-md-10" ng-show="isshow==true">
+                <!--头部信息-->
+                <div class="header">
+                    <div class="title">
+                        {{currentCon.title}}
+                    </div>
+                    <div class="addOpt" ng-click="addOpt()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        添加条目
+                    </div>
+                </div>
+                <!--条目信息-->
+                <div class="optBox">
+                    <div class="opt" ng-repeat="item in currentCon.son track by item.id">
+                        <div class="doneBtn" ng-click="doneFun(item.id)">
+
+                        </div>
+
+                        <input type="text" ng-model="item.title" ng-blur="blur()">
+                        <div class="removeOpt glyphicon glyphicon-trash" ng-click="delOpt(item.id)"></div>
+                    </div>
+                </div>
+            </div>
+            <!--已完成信息-->
+            <div class="right col-xs-8 col-sm-9 col-md-10" ng-show="isshow==false">
+                <div class="header">
+                    <div class="title">
+                        完成列表
+                    </div>
+                </div>
+                <div class="optBox">
+                    <div class="opt" ng-repeat="item in done track by item.id">
+                        <input type="text" ng-model="item.title" ng-blur="blur()">
+                        <span>{{item.pare}}</span>
+                        <div class="removeOpt glyphicon glyphicon-trash" ng-click="removeDone(item.id)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
