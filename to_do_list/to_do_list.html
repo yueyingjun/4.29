@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/to_do_list.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/to_do_list.js"></script>
+</head>
+<body>
+<div class="container-fluid" ng-app="myApp" ng-controller="control">
+    <div class="row">
+        <div class="left col-md-4 col-sm-3 col-xs-2">
+            <!--搜索框-->
+            <div class="form-group search">
+                <label class="sr-only" for="exampleInputAmount"></label>
+                <div class="input-group">
+                    <div class="input-group-addon">search</div>
+                    <input type="text" class="form-control" id="exampleInputAmount" ng-model="search">
+
+                </div>
+            </div>
+
+            <!--事项完成列表-->
+            <div class="done" ng-click="showDone()">
+                <span class="glyphicon glyphicon-th-list"></span>
+                <span>已完成事项<span class="color">恭喜你完成了{{done.length}}条事项</span></span>
+            </div>
+
+            <!--待办事项-->
+            <div class="done" ng-click="showCon()">
+                <span class="glyphicon glyphicon-th-large"></span>
+                <span>待办事项</span>
+            </div>
+
+            <!--新建事项-->
+            <div class="optList" ng-repeat="item in data | filter:{title:search} track by item.id">
+                <input type="text" class="form-control opt " ng-model="item.title " ng-focus="focus(item.id)" ng-blur="blur()">
+                <span class="glyphicon glyphicon-trash" ng-click="del(item.id)"></span>
+            </div>
+
+            <!--添加事件-->
+            <div class="add" ng-click="add()">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span>添加事项</span>
+            </div>
+        </div>
+
+        <!--条目列表-->
+        <div class="right col-md-8 col-sm-9 col-xs-10" ng-show="show==true">
+            <!--右边顶部-->
+            <div class="header">
+                <div class="title">
+                    <span>{{currentCon['title']}}</span>
+                </div>
+                <div class="addBtn" ng-click="addOpt()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>添加条目</span>
+                </div>
+            </div>
+            <!--新建条目-->
+            <div class="optBox" ng-repeat="item in currentCon.son track by item.id">
+                <div class="optLeft" ng-click="addDone(item.id)"></div>
+                <input type="text" class="form-control" ng-model="item.title" ng-click="optBlur()">
+                <span class="glyphicon glyphicon-trash delOpt" ng-click="delOpt(item.id)"></span>
+            </div>
+        </div>
+
+
+        <!--事项完成列表-->
+        <div class="right col-md-8 col-sm-9 col-xs-10" ng-show="show==false">
+            <!--右边顶部-->
+            <div class="header">
+                <div class="title">
+                    <span>事项完成列表</span>
+                </div>
+
+            </div>
+            <!--条目完成列表-->
+            <div class="optBox" ng-repeat="item in done track by item.id">
+
+                <input type="text" class="form-control" ng-model="item.title">
+                <span class="glyphicon glyphicon-trash delOpt" ng-click="delDone(item.id)"></span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</div>
+</body>
+</html>

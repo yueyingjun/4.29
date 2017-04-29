@@ -1,0 +1,111 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.container-fluid{
+    width: 100%;
+    height: 100%;
+}
+.row{
+    width: 100%;height: 100%;
+}
+.left{
+    height: 100%;
+    position: relative;
+    border-right: 1px solid #000;
+}
+.done{
+    cursor: pointer;
+}
+.right{
+    height: 100%;
+}
+.search{
+    margin-top: 10px;
+}
+.optList{
+    position: relative;
+    display: flex;
+    justify-content:space-between;
+}
+.opt{
+    width: 90%;
+}
+.optList input{
+    outline:none;
+    border: none;
+    box-shadow: none;
+}
+.optList input:focus{
+    outline:none;
+    border: none;
+    box-shadow: none;
+}
+.glyphicon-trash:before{
+    display: block;
+    margin-top: 8px;
+}
+.optList span{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+.optList:hover span{
+    visibility: visible;
+    opacity: 1;
+}
+
+.add{
+    position: absolute;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+
+.header{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    margin-top: 10px;
+    justify-content:space-between;
+    border-bottom: 1px solid #999999;
+}
+.optBox{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #aaaaaa;
+}
+.optBox input:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+.optBox input{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+.optLeft{
+    margin-top: 13px;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #aaaaaa;
+    border-radius: 50%;
+}
+.optBox span{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.optBox:hover span{
+    visibility: visible;
+    opacity: 1;
+}
+.addBtn,.delOpt{
+    cursor: pointer;
+}
+.color{
+    color: red;
+}
