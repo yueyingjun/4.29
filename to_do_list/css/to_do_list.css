@@ -1,0 +1,136 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.box{
+    height: 100%;
+}
+.container-fluid{
+    height: 100%;
+}
+.left{
+    height: 100%;
+    border-right:1px solid #000000 ;
+}
+.right{
+    height: 100%;
+}
+.row{
+    height: 100%;
+}
+.search{
+    margin-top: 10px;
+}
+.list{
+    position: relative;
+}
+.list input{
+    border: none;
+
+}
+.list span{
+    position: absolute;
+    right: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s linear ;
+}
+.list:hover span{
+    visibility: visible;
+    opacity: 1;
+}
+.add{
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+.header{
+    display: flex;
+    width: 100%;
+    height:10%;
+    border-bottom: 1px solid #000000;
+    align-items: center;
+}
+.addlist{
+    float: right;
+    margin-left: 500px;
+}
+.optbox{
+    width: 100%;
+    margin-top: 10px;
+    height: 20px;
+}
+.opt{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #000000;
+}
+.opt input:focus{
+    outline: none;
+}
+.donebtn{
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000000;
+}
+.opt input{
+    width: 80%;
+    height: 80%;
+    margin-left: 20px;
+    border: none;
+}
+.opt:hover .removeopt{
+    visibility: visible;
+    opacity: 1;
+}
+.removeopt{
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+.glyphicon{
+    cursor: pointer;
+}
+.done span:nth-of-type(3){
+    color: red;
+}
+.optBox{
+    margin-top: 10px;
+}
+.opt{
+    width:100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #000;
+}
+input:focus{
+    outline: none;
+}
+
+.opt input{
+    width:80%;margin-left:20px;
+    border:none;
+}
+.removeopt{
+    position: absolute;
+    right:0;top:6px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease;
+}
+.opt:hover .removeOpt{
+    visibility: visible;
+    opacity: 1;
+}
