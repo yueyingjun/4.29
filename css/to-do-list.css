@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+body,html{
+    height: 100%;
+}
+.row {
+    height: 100%;
+    width: 100%;
+}
+.row .glyphicon{
+    top:0;
+}
+.row .left,.row .right{
+    height: 100%;
+    box-sizing: border-box;
+}
+.row .left{
+    border-right: 1px solid #000;
+}
+.row .yiwancheng{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+.row .yiwancheng span{
+    font-size: 16px;
+}
+.yiwancheng .nums{
+    color: red;
+}
+
+.list{
+    display: flex;
+    justify-content: space-between;
+}
+.list span{
+    font-size: 16px;
+    line-height: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s linear;
+}
+.list:hover span{
+    visibility: visible;
+    opacity: 1;
+}
+input{
+    margin-left: 10px;
+    outline: none;
+    /*border: 0 ;*/
+}
+.add{
+    width: auto;
+    margin: 0 auto;
+    position:absolute;
+    bottom: 10px;
+    left: 35%;
+}
+
+
+.header{
+    width: 100%;
+    height: 10%;
+    border-bottom: 1px solid #3c3c3c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.optBox{
+    margin-top: 10px;
+}
+.opt{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #000;
+}
+.cirle{
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: 1px solid red;
+    position: absolute;
+    left: 0;
+    top: 1px;
+}
+.opt input {
+    width: 80%;
+    margin-left: 20px;
+    border: none;
+}
+.opt .removeOpt {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease;
+}
+.opt:hover .removeOpt{
+    opacity: 1;
+    visibility: visible;
+}
