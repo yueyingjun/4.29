@@ -1,6 +1,7 @@
 html,body{
     width:100%;height:100%;
     overflow: hidden;
+    background: #fcfcfc;
 }
 .container-fluid{
     height:100%;
@@ -10,7 +11,7 @@ html,body{
 }
 .left{
     height:100%;
-    border-right: 1px solid #000;
+    border-right: 1px solid #8c8c8c;
     position: relative;
 }
 .right{
@@ -19,21 +20,35 @@ html,body{
 .search{
     margin-top: 20px;
 }
+.done{
+    padding: 5px;
+}
 .nums{
     color:red;
 }
+.listBox{
+    padding: 5px;
+}
 .list{
     position: relative;
+    border-bottom: 1px solid #ccc;
 }
 .list input{
     border:none;
+    margin: 5px 0px;
+
 }
 .list span{
     position: absolute;
     right:10px;
     opacity: 0;
+    top:10px;
     visibility: hidden;
     transition: opacity 1s linear;
+}
+.list span:hover{
+    color: #f00;
+    cursor: pointer;
 }
 .list:hover span{
     visibility: visible;
@@ -49,17 +64,22 @@ html,body{
 }
 .header{
     width:100%;height:10%;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #8c8c8c;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .doneBtn{
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     width:10px;height:10px;
-    border:1px solid #000;
+    /*border:1px solid #000;*/
     position: absolute;
-    left:0; top:6px;
+    left:0; top:10px;
+    color: greenyellow;
+}
+.doneBtn:hover{
+    color: #4cae4c;
+    cursor: pointer;
 }
 .optBox{
     margin-top: 10px;
@@ -69,7 +89,9 @@ html,body{
     overflow: hidden;
     position: relative;
     margin-bottom: 5px;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+
 }
  input:focus{
    outline: none;
@@ -77,17 +99,30 @@ html,body{
 
 .opt input{
    width:80%;margin-left:20px;
+    background: #fcfcfc;
     border:none;
+}
+.list input{
+    background: #fcfcfc;
 }
 .removeOpt{
     position: absolute;
     right:0;top:6px;
     opacity: 0;
     visibility: hidden;
+    color: #8c8c8c;
     transition: opacity .5s ease;
+}
+.removeOpt:hover{
+    color: #f00;
+    cursor: pointer;
 }
 .opt:hover .removeOpt{
     visibility: visible;
     opacity: 1;
+}
+.header .title{
+    font-size: 30px;
+    color: #333;
 }
 
