@@ -48,15 +48,15 @@ angular.module("lyApp",[])
             }
         }
         //获取子信息的数目
-        $scope.len=0;
-        if($scope.data){
+        // $scope.len=0;
+        if($scope.data.length!==0){
             $scope.len="";
             angular.forEach($scope.data,function (obj,index) {
                 $scope.len+=$scope.data[index].son.length+"+";
             });
             $scope.len=eval($scope.len.slice(0,-1));
             // console.log($scope.len);
-        }else{
+        }else if($scope.data.length==0){
            $scope.len=0; 
         }
 
@@ -64,8 +64,10 @@ angular.module("lyApp",[])
         $scope.removeList=function (id) {
             angular.forEach($scope.data,function (obj,index) {
                 if(id==obj.id){
-                    $scope.data.splice(index,1);
+                    $scope.data.splice(index,1);                   
                     var index=getIndex(id); //获取当前下标
+                    console.log(obj.son.length);
+                    $scope.len-=obj.son.length;
                     if(index==$scope.data.length-1){    //如果删除的是最后一个
                         $scope.currentIndex=index-1;    //显示前一个
                         $scope.currentCon=$scope.data[$scope.currentIndex];
@@ -73,8 +75,9 @@ angular.module("lyApp",[])
                         $scope.currentIndex=$scope.data.length-1;  //显示最后一个
                         $scope.currentCon=$scope.data[$scope.currentIndex];
                     }
-                }
+                }  
             });
+            
             localStorage.data=JSON.stringify($scope.data);
         };
 
