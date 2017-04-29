@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/to_do_list.css">
+    <script src="js/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div class="cj" ng-app="myapp" ng-controller="ctrl">
+    <div class="left col-lg-3 col-xs-4 col-md-5 ">
+        <div class="form-group search">
+            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
+                <div class="input-group-addon">搜索</div>
+            </div>
+        </div>
+        <div class="shixiang" ng-click="xiangMu()">
+            <span class="glyphicon glyphicon-th"></span>
+            <span>完成总项目</span>
+            <span class="sxNum">{{done.length}}</span>
+        </div>
+        <div class="xiangmu" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="daiban(item.id)">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <input type="text" ng-model="item.title" ng-blur="blur(item.id)">
+            <span class="delList glyphicon glyphicon-trash" ng-click="del(item.id)"></span>
+        </div>
+        <div class="add" ng-click="add()">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span>添加事项</span>
+        </div>
+    </div>
+    <div class="right col-lg-9 col-xs-8 col-md-7 " ng-show="flag==true">
+        <div class="title_box">
+            <div class="title">
+                {{val.title}}
+            </div>
+            <div class="caozuo">
+                <span class="glyphicon glyphicon-pencil"></span>
+                <span ng-click="addX()">添加项</span>
+            </div>
+        </div>
+        <div class="list" ng-repeat="item in val.son track by item.id">
+            <span class="circle" ng-click="getZong(item.id)"></span>
+            <input type="text" ng-model="item.title" ng-blur="blur()">
+            <span class="del glyphicon glyphicon-trash" ng-click="delX(item.id)"></span>
+        </div>
+    </div>
+    <div class="right col-lg-9 col-xs-8 col-md-7 " ng-show="flag==false">
+        <div class="title_box">
+            <div class="title">
+                完成总项目
+            </div>
+        </div>
+        <div class="list" ng-repeat="item in done track by item.id">
+            <span>{{item.title}}</span>
+            <span class="del glyphicon glyphicon-trash" ng-click="delDone(item.id)"></span>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    angular.module("myapp",[])
+        .controller("ctrl",function($scope,$filter){
+            $scope.data=localStorage.data?JSON.parse(localStorage.data):[];//获取本地存的数据
+            $scope.done=localStorage.done?JSON.parse(localStorage.done):[];//完成总项的本地数据
+            $scope.index=0;//正在操作的数据的下标
+            $scope.val=$scope.data[$scope.index];//正在操作的数据
+            $scope.flag=true;//为了切换class="right"的页面加的开关
+            $scope.search="";//搜索值初始化
+            //左右关联
+            $scope.daiban=function(id) {//点击左边的项目右边显示出来
+                $scope.flag=true;//一点击左边的项目就让总项目消失
+                var index=getIndex($scope.data,id);//使用getIndex获取到当前这个数据的下标
+                $scope.index=index;
+                $scope.val=$scope.data[$scope.index];//获取这条数据放到右边的内容中
+            }
+            function getIndex(arr,id){
+                for(var i=0;i<arr.length;i++){
+                    if(arr[i].id==id){
+                        return i;//返回下标
+                    }
+                }
+            }
+            //左边失去焦点
+            $scope.blur=function(id){
+                localStorage.data=JSON.stringify($scope.data);//失去焦点后直接更新本地保存的值
+            }
+            //添加新项
+            $scope.add=function(){//给$scope.data里面push值
+                var num=getMax($scope.data);
+                var obj={};
+                obj.id=num;
+                obj.title="待办项"+obj.id;
+                obj.son=[];
+                $scope.data.push(obj);
+                localStorage.data=JSON.stringify($scope.data);
+            }
+            function getMax(arr) {//返回数组中最大的数字
+                if(arr.length==0){
+                    return 1
+                }else{
+                    var temp=arr[0].id;
+                    for(var i=0;i<arr.length;i++){
+                        if(arr[i].id>temp){
+                            temp=arr[i].id;
+                        }
+                    }
+                    return temp+1;
+                }
+            }
+            //左边删除项目
+            $scope.del=function(id){
+                angular.forEach($scope.data,function(val,index){
+                    if(val.id==id){
+                        $scope.data.splice(index,1);
+                        if(index==$scope.data.length){
+                            $scope.index=index-1;
+                            $scope.val=$scope.data[$scope.index]
+                        }
+                        else{
+                            $scope.index=$scope.data.length-1;
+                            $scope.val=$scope.data[$scope.index]
+                        }
+                    }
+                })
+                localStorage.data=JSON.stringify($scope.data);
+            }
+
+            //右边添加新项
+            $scope.addX=function(){
+                var num=getMax($scope.val.son);
+                var obj={};
+                obj.id=num;
+                obj.title="新事件"+obj.id;
+                $scope.val.son.push(obj);//给$scope.data.son里面加值
+                localStorage.data=JSON.stringify($scope.data);
+            }
+            //右边删除
+            $scope.delX=function (id) {
+                angular.forEach($scope.val.son,function(val,index){
+                    if(val.id==id){
+                        $scope.val.son.splice(index,1);
+                    }
+                })
+                localStorage.data=JSON.stringify($scope.data);
+            }
+            //右边完成后
+            $scope.getZong=function(id){
+                var index=getIndex($scope.val.son,id);
+                var obj=$scope.val.son.splice(index,1);//obj里面除了值还有个length
+                obj[0].id=getMax($scope.done);//obj[0]去除了obj里面的length属性只剩下数组
+                $scope.done.push(obj[0]);
+                localStorage.data=JSON.stringify($scope.data);
+                localStorage.done=JSON.stringify($scope.done);
+            }
+            //总项目点击
+            $scope.xiangMu=function(){
+                $scope.flag=false;
+            }
+            //总项目删除
+            $scope.delDone=function(id){
+                angular.forEach($scope.done,function(val,index){
+                    if(val.id==id){
+                        $scope.done.splice(index,1);
+                    }
+                })
+                localStorage.done=JSON.stringify($scope.done);
+            }
+            //搜索
+            $scope.$watch("search",function(){
+                var arr=$filter("filter")($scope.data,{title:$scope.search});
+                $scope.index=0;
+                $scope.val=arr[$scope.index];
+            })
+        })
+</script>
+</html>
