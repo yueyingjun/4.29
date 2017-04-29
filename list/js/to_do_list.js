@@ -50,11 +50,16 @@ angular.module("lyApp",[])
         //获取子信息的数目
         $scope.len=0;
         if($scope.data){
+            $scope.len="";
             angular.forEach($scope.data,function (obj,index) {
                 $scope.len+=$scope.data[index].son.length+"+";
             });
             $scope.len=eval($scope.len.slice(0,-1));
+            // console.log($scope.len);
+        }else{
+           $scope.len=0; 
         }
+
         // //删除
         $scope.removeList=function (id) {
             angular.forEach($scope.data,function (obj,index) {
