@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/to_do_list.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/to_do_list.js"></script>
+</head>
+<body>
+      <div class="container-fluid" ng-app="myapp" ng-controller="ctrl">
+            <div class="row">
+                <div class="left col-xs-5 col-sm-4 col-md-3">
+
+                    <div class="form-group search">
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">搜索</div>
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
+                        </div>
+                    </div>
+
+
+                    <div class="done">
+                        <span class="glyphicon glyphicon-th"></span>
+                        <span ng-click="showdone()">已完成</span>
+                        <span class="nums">{{done.length}}</span>
+                    </div>
+
+                    <div class="listBox">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span>代办事项</span>
+                        </div>
+                        <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showCon()">
+                            <input type="text" value="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                            <span class="glyphicon glyphicon-trash removeList" ng-click="removeList(item.id)"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="add" ng-click="add()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span>添加事项</span>
+                    </div>
+
+                </div>
+                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+
+                   <div class="header">
+                       <div class="title">
+                           {{currentCon.title}}
+                       </div>
+                       <div>
+                           <span class="glyphicon glyphicon-plus"></span>
+                           <span class="addOpt" ng-click="addOpt()">添加条目</span>
+                       </div>
+                   </div>
+
+                    <div class="optBox">
+                        <div class="opt" ng-repeat="item in currentCon.son track by item.id">
+                            <div class="doneBtn" ng-click="doneFun(item.id)">
+                                
+                            </div>
+
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+                            <div class="removeOpt glyphicon glyphicon-trash" ng-click="delOpt(item.id)"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+
+                    <div class="header">
+                        <div class="title">
+                            完成列表
+                        </div>
+                    </div>
+
+                    <div class="optBox">
+                        <div class="opt" ng-repeat="item in done track by item.id">
+
+
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+                            <div class="removeOpt glyphicon glyphicon-trash" ng-click="removeDone(item.id)"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+      </div>
+</body>
+</html>
