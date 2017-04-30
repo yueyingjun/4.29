@@ -1,0 +1,152 @@
+html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #fff;
+}
+body{
+    width: 1200px;
+    height: 100%;
+    background: #fffbdb;
+    margin: auto;
+    border: 1px solid #ccc;
+}
+.specification {
+    position: relative;
+    top: 70px;left: 0;
+    cursor: pointer;
+}
+h1{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+.box{
+    height: 100%;
+}
+.container-fluid{
+    height: 100%;
+}
+.left{
+    height: 100%;
+    border-right:1px solid #ccc ;
+}
+.right{
+    height: 100%;
+}
+.row{
+    height: 100%;
+    border-top: 1px solid #ccc;
+}
+.search{
+    margin-top: 10px;
+}
+input{
+    outline:none;border: none;
+}
+#exampleInputAmount{
+    border:1px solid #ccc;
+    margin-top: 1px;
+}
+.list{
+    position: relative;
+}
+.list input{
+    background: #FFFBDB;
+}
+.glyphicon-trash{
+    color: red;
+}
+.list span:nth-of-type(2){
+    position: absolute;
+    right: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s linear ;
+}
+.list:hover span{
+    visibility: visible;
+    opacity: 1;
+}
+.add{
+    position: absolute;
+    bottom: 120px;
+    cursor: pointer;
+}
+.header{
+    display: flex;
+    width: 90%;
+    height:10%;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+}
+.addlist{
+    float: right;
+    margin-left: 500px;
+}
+.optbox{
+    width: 100%;
+    margin-top: 10px;
+    height: 20px;
+}
+.opt{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+.opt input{
+    background: #FFFBDB;
+}
+.opt input:focus{
+    outline: none;
+    background: #FFFBDB;
+}
+.donebtn{
+    position: absolute;
+    left: 0;
+    width: 15px;
+    height: 15px;
+}
+.opt input{
+    width: 80%;
+    height: 80%;
+    margin-right: 130px;
+}
+.opt:hover .removeopt{
+    visibility: visible;
+    opacity: 1;
+}
+.removeopt{
+    position: absolute;
+    right: 85px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+.glyphicon{
+    cursor: pointer;
+}
+
+.done span:nth-of-type(3){
+    color: red;
+}
+.header div:nth-of-type(2){
+    margin-left: 630px;
+}
+.addopt{
+    cursor: pointer;
+}
+.done span:nth-of-type(2){
+    cursor: pointer;
+}
+.title{
+    cursor: pointer;
+}
+.list{
+    cursor: pointer;
+}

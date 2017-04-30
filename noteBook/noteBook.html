@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <script src="js/index.js"></script>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <script src="js/angular.min.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+	<body>
+
+      <div class="container-fluid" ng-app="myapp" ng-controller="ctrl">
+          <span class="specification"
+                title="功能：
+          1.搜索 代办事项
+          2.添加 / 编辑 / 删除 代办事项
+          3.添加 / 编辑 / 删除 条目
+          4.如果已完成，请点击条目前的图标
+                ">使用说明</span>
+      	<h1>记事本</h1>
+
+            <div class="row">
+                <div class="left col-xs-5 col-sm-4 col-md-3">
+                    <div class="form-group search">
+                        <label class="sr-only" for="exampleInputAmount"></label>
+                        <div class="input-group">
+                            <span class="input-group-addon glyphicon glyphicon-search"></span>
+                             <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入需要查找的代办事项" ng-model="search">
+                        </div>
+                    </div>
+
+
+                    <div class="done">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span ng-click="showdone()">已完成</span>
+                        <span class="nums">{{done.length}}项</span>
+                    </div>
+
+                    <div class="listBox">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span>代办事项</span>
+                        </div>
+                        <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showcon()">
+                        	<span class="glyphicon glyphicon-paperclip"></span>
+                            <input type="text" value="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                            <span class="glyphicon glyphicon-trash removelist" ng-click="removelist(item.id)"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="add" ng-click="add()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span>添加事项</span>
+                    </div>
+
+                </div>
+                <!--ng-show 指令在表达式为 true 时显示指定的 HTML 元素，否则隐藏指定的 HTML 元素。-->
+                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+
+                   <div class="header">
+                       <div class="title">
+                           {{currentcon.title}}
+                       </div>
+                       <div>
+                           <span class="glyphicon glyphicon-plus"></span>
+                           <span class="addopt" ng-click="addopt()">添加条目</span>
+                       </div>
+                   </div>
+
+                    <div class="optbox">
+                        <div class="opt" ng-repeat="item in currentcon.son track by item.id">
+                            <div class="glyphicon glyphicon-tag" ng-click="donefun(item.id)"></div>
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+                            <div class="removeopt glyphicon glyphicon-trash" ng-click="delopt(item.id)"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+
+                    <div class="header">
+                        <div class="title">
+                            完成列表
+                        </div>
+                    </div>
+
+                    <div class="optbox">
+                        <div class="opt" ng-repeat="item in done track by item.id">
+                            <span class="glyphicon glyphicon-ok-sign" ng-click="donefun(item.id)"></span>
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+                            <div class="removeopt glyphicon glyphicon-trash" ng-click="removedone(item.id)"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+      </div>
+</body>
+</html>
+
+
+<!--本地存储
+	1.localStorage存储数据	
+	localStorage.aa=bb;
+	localStorage.setItem("num",20);
+	2.获取
+	console.log(localStorage.getItem("num"));   
+	console.log(localStorage.num);
+	3.修改
+	
+	4.删除
+	localStorage.removeItem("num");
+	localStorage.clear();
+	
+localStorage与cookie，session的区别
+1.存储量        cookie的存储量很小   4kb 50个键值对
+         localStorage   4M 
+         session    存储在本地      比cookie存储内容多一点 
+2.存活时间    cookie 过期时间    如不指定时间，则为浏览器打开时间
+         localStorage   永久存储 ，除非手动删除
+         session  存活周期为浏览器打开的时候，关闭则清空
+3. 编写方式与   localStorage类似    
+         sessionStorage.aa=bb;
+         sessionStorange.setItem("aa","vv");-->
