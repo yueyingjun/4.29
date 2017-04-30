@@ -1,0 +1,99 @@
+body,html{
+    width:100%;
+    height:100%;
+}
+.row{
+    width:100%;
+    height:100%;
+}
+.container-fluid{
+    width:100%;
+    height:100%;
+}
+.left{
+    height:100%;
+    border-right:1px solid #000;
+    position: relative;
+}
+.search{
+    margin-top:20px;
+}
+.done input{
+    border:none;
+}
+.done .num{
+    color:red;
+}
+.listBox{
+    width:100%;
+    height:auto;
+}
+.list{
+    width:100%;
+    height:auto;
+    position:relative;
+}
+.list span{
+    visibility: hidden;
+    opacity:0;
+    transition: opacity 1s linear;;
+    display:inline-block;
+    position:absolute;
+    right:10px;
+}
+.list:hover >span{
+    visibility: visible;
+    opacity:1;
+}
+input{
+    border:none;
+}
+.add{
+    width:100%;
+    height:30px;
+    position:absolute;
+    bottom:10px;
+    text-align: center;
+    cursor: pointer;
+}
+.right{
+    height:100%;
+}
+.header{
+    flex-direction: row;
+    margin-top:20px;
+    width:100%;
+    height:10%;
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #000;
+    align-items:center;
+}
+.header span{
+    cursor:pointer;
+}
+.title{
+    display:inline-block;
+    width:60%;
+    height:100%;
+}
+.optBox{
+    width:100%;
+    height:auto;
+}
+.optlist{
+    width:100%;
+    height:35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.optlist span:nth-child(3){
+    visibility: hidden;
+    opacity:0;
+    transition: opacity 1s linear;;
+}
+.optlist:hover >span:nth-child(3){
+    visibility: visible;
+    opacity:1;
+}
