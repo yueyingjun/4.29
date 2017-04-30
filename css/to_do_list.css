@@ -12,6 +12,9 @@ html,body{
     height:100%;
     border-right: 1px solid #000;
     position: relative;
+    background-image: url(../img/bg.png);
+    background-repeat: repeat;
+    color:white;
 }
 .right{
     height:100%;
@@ -19,14 +22,35 @@ html,body{
 .search{
     margin-top: 20px;
 }
+.done{
+	width: 100%;
+	margin-top: 20px;
+	height: 30px;
+	line-height: 30px;
+	border-bottom:1px solid #fff ;
+}
 .nums{
+	float: right;
     color:red;
 }
+.title{
+	margin-top: 10px;
+	height: 40px;
+}
+.title span{
+	float: left;
+	line-height: 30px;
+}
 .list{
+	line-height: 25px;
     position: relative;
 }
 .list input{
+	background: none;
     border:none;
+}
+.rightadd{
+	color: forestgreen;
 }
 .list span{
     position: absolute;
@@ -54,12 +78,17 @@ html,body{
     justify-content: space-between;
     align-items: center;
 }
+.doneFont{
+	cursor: pointer;
+}
 .doneBtn{
-    border-radius: 50%;
-    width:10px;height:10px;
-    border:1px solid #000;
     position: absolute;
-    left:0; top:6px;
+    left:0; top:9px;
+    float: left;
+    cursor: pointer;
+}
+.doneBtn:hover{
+	color: forestgreen;
 }
 .optBox{
     margin-top: 10px;
@@ -70,14 +99,17 @@ html,body{
     position: relative;
     margin-bottom: 5px;
     border-bottom: 1px solid #000;
+    line-height: 40px;
 }
  input:focus{
    outline: none;
 }
-
 .opt input{
-   width:80%;margin-left:20px;
+    width:80%;margin-left:20px;
     border:none;
+    float: left;
+    margin-top: -5px;
+
 }
 .removeOpt{
     position: absolute;
