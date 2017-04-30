@@ -4,18 +4,6 @@
 
 angular.module("todolist",[]).controller("ctrl",["$scope","$filter",function($scope,$filter){
 
-    // 数据存放结构
-    //     [{name:"zhangsan",age:"200",son:[]},{name:"lisi",age:"300"}];
-
-    /*
-     ng-repeat="item in data track by item.id"   track by 的意思是让循环按照我们自己设置的id值去循环而不是生成的id值
-
-         ng-module=item.title
-
-         add: ng-click="add()";
-
-    */
-
     // 获取数据
     $scope.data=localStorage.data?JSON.parse(localStorage.data):[];
     $scope.done=localStorage.done?JSON.parse(localStorage.done):[];
@@ -240,16 +228,6 @@ angular.module("todolist",[]).controller("ctrl",["$scope","$filter",function($sc
 
     });
 
-
-    // 获取已完成条目
-
-    /*
-    1. 从原数组删除
-    2. 删除后的元素放入done数组里面
-
-    data数组存放未完成事项
-    done数组存放已完成事项
-    */
 
 }]);
 
