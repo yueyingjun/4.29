@@ -1,26 +1,19 @@
 html,body{
     width:100%;height:100%;
-    overflow: hidden;
+    overflow:hidden;
 }
 .container-fluid{
-    height:100%;
+    height:100%
 }
 .row{
-    height:100%;
+    height:100%
 }
 .left{
     height:100%;
-    border-right: 1px solid #000;
-    position: relative;
+    border-right:1px solid #000;
 }
 .right{
-    height:100%;
-}
-.search{
-    margin-top: 20px;
-}
-.nums{
-    color:red;
+    height:100%
 }
 .list{
     position: relative;
@@ -29,30 +22,26 @@ html,body{
     border:none;
 }
 .list span{
-    position: absolute;
+    position:absolute;
     right:10px;
     opacity: 0;
-    visibility: hidden;
     transition: opacity 1s linear;
 }
 .list:hover span{
-    visibility: visible;
-  opacity: 1;
+    opacity: 1;
 }
 .add{
     cursor: pointer;
     position: absolute;
-    bottom: 10px;
-}
-.addOpt{
-    cursor: pointer;
+    left:100px;
+    bottom:10px;
 }
 .header{
     width:100%;height:10%;
-    border-bottom: 1px solid #000;
+    border-bottom:1px solid #000;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content:space-around;
+    align-items:center;
 }
 .doneBtn{
     border-radius: 50%;
@@ -71,12 +60,12 @@ html,body{
     margin-bottom: 5px;
     border-bottom: 1px solid #000;
 }
- input:focus{
-   outline: none;
+input:focus{
+    outline: none;
 }
 
 .opt input{
-   width:80%;margin-left:20px;
+    width:80%;margin-left:20px;
     border:none;
 }
 .removeOpt{
@@ -90,4 +79,3 @@ html,body{
     visibility: visible;
     opacity: 1;
 }
-
