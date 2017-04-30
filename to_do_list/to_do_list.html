@@ -32,7 +32,7 @@
                     <div class="listbox">
                         <span class="glyphicon glyphicon-th"></span><span>待办事项</span>
                     </div>
-                    <div class="list" ng-repeat="item in data track by item.id" ng-click="showcon()">    <!--按自己的方式循环-->
+                    <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id" ng-click="showcon()">    <!--按自己的方式循环-->
                         <input type="text"  ng-focus="focuss(item.id)" ng-blur="blurs(item.id)" ng-model="item.title"/>
                         <span class="glyphicon glyphicon-trash" ng-click="removelist(item.id)"></span>
                     </div>

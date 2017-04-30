@@ -10,6 +10,17 @@ angular.module("myapp",[]).controller("ctrl",["$scope","$filter",function($scope
 //			$scope.currentid=$scope.data.length-1;
     $scope.currentcon=$scope.data[$scope.currentindex];
 
+//监控search
+
+
+    $scope.search="";
+    $scope.$watch("search",function(){
+        var arr=$filter("filter")($scope.data,{title:$scope.search});
+        $scope.currentindex=0;
+        $scope.currentcon=arr[$scope.currentindex]
+
+
+    })
 
     //添加列表   唯一id   title
     $scope.add=function(){
