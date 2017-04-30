@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/angular.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script>
+		angular.module("myapp",[]).controller("ctrl",["$scope","$filter",function($scope,$filter){
+    // 源数据
+    $scope.data=localStorage.data?JSON.parse(localStorage.data):[];
+    //完成的数据
+
+    $scope.done=localStorage.done?JSON.parse(localStorage.done):[];
+
+    //是否显示完成列表
+    $scope.isshow=true;
+
+    //当前选择的事项
+    $scope.currentindex=0;
+    $scope.currentcon=$scope.data[$scope.currentindex];
+
+
+    //监控search
+    $scope.search="";
+    $scope.$watch("search",function(){
+        var arr=$filter("filter")($scope.data,{title:$scope.search});
+        $scope.currentindex=0;
+        $scope.currentcon=arr[$scope.currentindex];
+    })
+
+
+    //添加列表
+      //1. 唯一id    2.  title
+    $scope.add=function(){
+        var obj={};
+        obj.id=getmaxid($scope.data);
+        obj.title="新建事项"+obj.id;
+        obj.son=[];
+        $scope.data.push(obj);
+        $scope.currentindex=getindex($scope.data,obj.id);
+        $scope.currentcon=$scope.data[$scope.currentindex];
+
+        localStorage.data=JSON.stringify($scope.data);
+    }
+
+
+    /*删除列表*/
+
+    $scope.removelist=function(id){
+       angular.forEach($scope.data,function(obj,index){
+           if(id==obj.id){
+               $scope.data.splice(index,1);
+               var index=getindex(id);
+               if(index==$scope.data.length-1){
+                   $scope.currentindex=index-1;
+                   $scope.currentcon=$scope.data[$scope.currentindex];
+               }else{
+                   $scope.currentindex=$scope.data.length-1;
+                   $scope.currentcon=$scope.data[$scope.currentindex];
+               }
+
+
+           }
+       })
+        localStorage.data=JSON.stringify($scope.data);
+    }
+
+    /*列表获得焦点*/
+
+    $scope.focus=function(id){
+        var index=getindex($scope.data,id);
+        $scope.currentindex=index;
+        $scope.currentcon=$scope.data[$scope.currentindex];
+    }
+
+    /*失去焦点*/
+
+    $scope.blur=function(id){
+        localStorage.data=JSON.stringify($scope.data);
+    }
+
+    /*添加条目*/
+
+    $scope.addopt=function(){
+        var obj={};
+        var id=getmaxid($scope.currentcon.son);
+        obj.id=id;
+        obj.title="新建条目"+obj.id;
+        $scope.currentcon.son.push(obj);
+        localStorage.data=JSON.stringify($scope.data);
+    }
+
+    /*删除条目*/
+
+    $scope.delopt=function(id){
+        var index=getindex($scope.currentcon.son,id);
+        $scope.currentcon.son.splice(index,1);
+        localStorage.data=JSON.stringify($scope.data);
+    }
+
+    /*条目完成*/
+    $scope.donefun=function(id){
+        var index=getindex($scope.currentcon.son,id);
+        //1. 原数组删除
+        var obj=$scope.currentcon.son.splice(index,1);
+        //2. 要将删除的元素放到done数组里面;
+        obj[0].id=getmaxid($scope.done);
+         $scope.done.push(obj[0]);
+        localStorage.data=JSON.stringify($scope.data);
+        localStorage.done=JSON.stringify($scope.done);
+    }
+
+    /*显示完成列表*/
+    $scope.showdone=function(){
+        $scope.isshow = false;
+    }
+
+    /*显示内容*/
+
+    $scope.showcon=function(){
+        $scope.isshow = true;
+    }
+
+    /*删除已完成*/
+    $scope.removedone=function(id){
+        var index=getindex($scope.done,id);
+        $scope.done.splice(index,1);
+        localStorage.done=JSON.stringify($scope.done);
+    }
+
+    function getmaxid(arr){
+        if(arr.length==0){
+            return 1;
+        }else{
+            var temp=arr[0].id;
+            for(var i=0;i<arr.length;i++){
+                if(arr[i].id>temp){
+                    temp=arr[i].id;
+                }
+            }
+            return temp+1;
+        }
+    }
+
+
+    function getindex(arr,id){
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].id==id){
+               return i;
+            }
+        }
+    }
+}])
+	</script>
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: #fffbdb;
+		}
+		h1{
+			width: 100%;
+			height: 50px;
+			text-align: center;
+		}
+		.box{
+			height: 100%;
+		}
+		.container-fluid{
+			height: 100%;
+		}
+		.left{
+			height: 100%;
+			border-right:1px solid #000000 ;
+		}
+		.right{
+			height: 100%;
+		}
+		.row{
+			height: 100%;
+			border-top: 1px solid #000000;
+		}
+		.search{
+			margin-top: 10px;
+		}
+		.list{
+			position: relative;
+		}
+		.list input{
+			border: none;
+			background: #FFFBDB;
+			
+		}
+		.list span:nth-of-type(2){
+			position: absolute;
+			right: 10px;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 1s linear ;
+		}
+		.list:hover span{
+			visibility: visible;
+			opacity: 1;
+		}
+		.add{
+			position: absolute;
+			bottom: 100px;
+			cursor: pointer;
+		}
+		.header{
+			display: flex;
+			width: 100%;
+			height:10%;
+			border-bottom: 1px solid #000000;
+			align-items: center;
+		}
+		.addlist{
+			float: right;
+			margin-left: 500px;
+		}
+		.optbox{
+			width: 100%;
+			margin-top: 10px;
+			height: 20px;
+		}
+		.opt{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			position: relative;
+			margin-bottom: 5px;
+			border-bottom: 1px solid #000000;
+		}
+		.opt input{
+			background: #FFFBDB;
+			
+		}
+		.opt input:focus{
+			outline: none;
+			background: #FFFBDB;
+			
+		}
+		.donebtn{
+			position: absolute;
+			left: 0;
+			width: 15px;
+			height: 15px;
+		}
+		.opt input{
+			width: 80%;
+			height: 80%;
+			margin-left: 20px;
+			border: none;
+		}
+		.opt:hover .removeopt{
+			visibility: visible;
+			opacity: 1;
+		}
+		.removeopt{
+			position: absolute;
+			right: 0;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity; 0.5s ease;
+		}
+		.glyphicon{
+			cursor: pointer;
+		}
+		.done span:nth-of-type(3){
+			color: red;
+		}
+		.header div:nth-of-type(2){
+			margin-left: 500px;
+		}
+		.addopt{
+			cursor: pointer;
+		}
+		.done span:nth-of-type(2){
+			cursor: pointer;
+		}
+		.title{
+			cursor: pointer;
+		}
+		.list{
+			cursor: pointer;
+		}
+	</style>
+	<body>
+      <div class="container-fluid" ng-app="myapp" ng-controller="ctrl">
+      	<h1>便签</h1>
+            <div class="row">
+                <div class="left col-xs-5 col-sm-4 col-md-3">
+                    <div class="form-group search">
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon glyphicon glyphicon-search"></div>
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
+                        </div>
+                    </div>
+
+
+                    <div class="done">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span ng-click="showdone()">已完成</span>
+                        <span class="nums">{{done.length}}项</span>
+                    </div>
+
+                    <div class="listBox">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span>代办事项</span>
+                        </div>
+                        <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showcon()">
+                        	<span class="glyphicon glyphicon-paperclip"></span>
+                            <input type="text" value="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                            <span class="glyphicon glyphicon-trash removelist" ng-click="removelist(item.id)"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="add" ng-click="add()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span>添加事项</span>
+                    </div>
+
+                </div>
+                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+
+                   <div class="header">
+                       <div class="title">
+                           {{currentcon.title}}
+                       </div>
+                       <div>
+                           <span class="glyphicon glyphicon-plus"></span>
+                           <span class="addopt" ng-click="addopt()">添加条目</span>
+                       </div>
+                   </div>
+
+                    <div class="optbox">
+                        <div class="opt" ng-repeat="item in currentcon.son track by item.id">
+                            <div class="donebtn glyphicon glyphicon-heart" ng-click="donefun(item.id)">
+                                
+                            </div>
+
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+                            <div class="removeopt glyphicon glyphicon-trash" ng-click="delopt(item.id)"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+
+                    <div class="header">
+                        <div class="title">
+                            完成列表
+                        </div>
+                    </div>
+
+                    <div class="optbox">
+                        <div class="opt" ng-repeat="item in done track by item.id">
+
+
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+                            <div class="removeopt glyphicon glyphicon-trash" ng-click="removedone(item.id)"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+      </div>
+</body>
+</html>
+
+
+<!--本地存储
+	1.localStorage存储数据	
+	localStorage.aa=bb;
+	localStorage.setItem("num",20);
+	2.获取
+	console.log(localStorage.getItem("num"));   
+	console.log(localStorage.num);
+	3.修改
+	
+	4.删除
+	localStorage.removeItem("num");
+	localStorage.clear();
+	
+localStorage与cookie，session的区别
+1.存储量        cookie的存储量很小   4kb 50个键值对
+         localStorage   4M 
+         session    存储在本地      比cookie存储内容多一点 
+2.存活时间    cookie 过期时间    如不指定时间，则为浏览器打开时间
+         localStorage   永久存储 ，除非手动删除
+         session  存活周期为浏览器打开的时候，关闭则清空
+3. 编写方式与   localStorage类似    
+         sessionStorage.aa=bb;
+         sessionStorange.setItem("aa","vv");-->
