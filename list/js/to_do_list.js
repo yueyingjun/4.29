@@ -115,6 +115,7 @@ angular.module("lyApp",[])
         };
         //子信息完成
         $scope.doneFun=function (id) {
+            $scope.len--;
             var index=getIndex($scope.currentCon.son,id);
             //在原数组中删除
             var obj=$scope.currentCon.son.splice(index,1);
