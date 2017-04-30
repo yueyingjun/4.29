@@ -38,6 +38,8 @@ myapp.controller("kongzhi",["$scope","$filter",function ($scope,$filter) {
         obj.title="新的事项"+obj.id;
         obj.son=[];
         $scope.data.push(obj);
+        $scope.currentIndex=getIndex($scope.data,obj.id);
+        $scope.currentCon=$scope.data[$scope.currentIndex];
         localStorage.data=JSON.stringify($scope.data);
     }
 
@@ -46,7 +48,14 @@ myapp.controller("kongzhi",["$scope","$filter",function ($scope,$filter) {
         angular.forEach($scope.data,function(obj,index){
             if(obj.id==delid){
                 $scope.data.splice(index,1);
-
+                var index=getIndex(id);
+                if(index==$scope.data.length-1){
+                    $scope.currentIndex=index-1;
+                    $scope.currentCon=$scope.data[$scope.currentIndex];
+                }else{
+                    $scope.currentIndex=$scope.data.length-1;
+                    $scope.currentCon=$scope.data[$scope.currentIndex];
+                }
                 // if($scope.data[index+1]){
                 //     $scope.currentIndex=$scope.data[index+1].id;
                 //     $scope.currentTitle=$scope.data[index+1].title;

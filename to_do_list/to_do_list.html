@@ -92,7 +92,10 @@
                     </div>
                     <ul class="evlist">
                         <!--事项列表-->
-                        <li ng-repeat="i in data | filter:{title:search} track by i.id"><input type="text" ng-model="i.title" ng-focus="focus(i.id)" ng-blur="blur(i.id)"><span class="glyphicon glyphicon-trash" ng-click="delev(i.id)"></span></li>
+                        <li ng-repeat="i in data | filter:{title:search} track by i.id">
+                            <input type="text" value="新建事项" ng-model="i.title" ng-focus="focus(i.id)" ng-blur="blur(i.id)">
+                            <span class="glyphicon glyphicon-trash" ng-click="delev(i.id)"></span>
+                        </li>
                     </ul>
                 </div>
 
