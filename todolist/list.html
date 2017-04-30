@@ -19,7 +19,6 @@
                     <div class="form-group search">
                         <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                         <div class="input-group">
-                            <div class="input-group-addon">搜索</div>
                             <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
                         </div>
                     </div>
@@ -27,15 +26,12 @@
 
                     <div class="done">
                         <span class="glyphicon glyphicon-th"></span>
-                        <span ng-click="showdone()">已完成</span>
+                        <span ng-click="showdone()">已完成事项</span>
                         <span class="nums">{{done.length}}</span>
                     </div>
 
                     <div class="listBox">
-                        <div class="title">
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span>代办事项</span>
-                        </div>
+
                         <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showCon()">
                             <input type="text" value="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
                             <span class="glyphicon glyphicon-trash removeList" ng-click="removeList(item.id)"></span>
