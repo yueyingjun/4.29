@@ -1,6 +1,7 @@
 html,body{
     width:100%;height:100%;
     overflow: hidden;
+    color:#fff;
 }
 .container-fluid{
     height:100%;
@@ -12,9 +13,17 @@ html,body{
     height:100%;
     border-right: 1px solid #000;
     position: relative;
+    background-image: url(../imgs/packed-1.png);
+    background-position: 0px 0px;
+    background-repeat: repeat;
 }
 .right{
     height:100%;
+    background:url(../imgs/packed-4.png) 0 0 repeat;
+    color:#000;
+}
+.right input{
+    background:url(../imgs/packed-4.png) 0 0 repeat;
 }
 .search{
     margin-top: 20px;
@@ -27,6 +36,11 @@ html,body{
 }
 .list input{
     border:none;
+    background-image: url(../imgs/packed-1.png);
+    background-position: 0px 0px;
+    background-repeat: repeat;
+    margin:5px 0;
+    margin-left:18px;
 }
 .list span{
     position: absolute;
@@ -37,7 +51,7 @@ html,body{
 }
 .list:hover span{
     visibility: visible;
-  opacity: 1;
+    opacity: 1;
 }
 .add{
     cursor: pointer;
@@ -63,6 +77,9 @@ html,body{
 }
 .optBox{
     margin-top: 10px;
+}
+.done{
+    margin-bottom:8px;
 }
 .opt{
     width:100%;
