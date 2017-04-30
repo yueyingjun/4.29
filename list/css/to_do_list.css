@@ -1,0 +1,110 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /*background: url("../img/bj.jpg") no-repeat center;*/
+    /*background-size: cover;*/
+}
+.container-fluid{
+    height: 100%;
+}
+.row{
+    height: 100%;
+}
+.left{
+    height: 100%;
+    border-right: 1px solid #000;
+    position: relative;
+}
+.right{
+    height: 100%;
+}
+.form-group{
+    margin: 15px 0;
+}
+.list-group{
+    position: relative;
+}
+.list-group input{
+    border: none;
+}
+.list-group .glyphicon-trash{
+    position: absolute;
+    right: 5px;
+    top:5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s linear;
+}
+.list-group:hover .glyphicon-trash{
+    visibility: visible;
+    opacity: 1;
+}
+/*添加事项*/
+.add{
+    position: absolute;
+    bottom: 10px;
+    cursor: pointer;
+}
+.header{
+    width:100%;height:10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+.title{
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.addOpt{
+    cursor: pointer;
+    /*color: azure;*/
+}
+.optBox{
+    margin-top: 10px;
+}
+.opt{
+    width:100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #eee;
+}
+.doneBtn{
+    border-radius: 50%;
+    width:10px;height:10px;
+    border:1px solid #bbb;
+    box-sizing: border-box;
+    position: absolute;
+    left:0; top:6px;
+    cursor: pointer;
+}
+.doneBtn:hover{
+    border:3px solid blueviolet;
+    background: #F0F0F0;
+}
+input:focus{
+    outline: none;
+}
+.opt input{
+    width:80%;
+    margin-left:20px;
+    border:none;
+}
+.removeOpt{
+    position: absolute;
+    right:5px;top:6px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease;
+}
+.opt:hover .removeOpt{
+    visibility: visible;
+    opacity: 1;
+}
+.glyphicon{
+    cursor: pointer;
+}
