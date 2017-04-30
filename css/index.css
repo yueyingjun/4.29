@@ -1,0 +1,137 @@
+html,body{
+    width:100%;
+    height:100%;
+    padding: 0;
+    margin:0;
+}
+/*zuobian*/
+.container-fluid,.row{
+    width:100%;
+    height:100%;
+}
+.row>.left,.row>.right{
+    height:100%;
+    position: relative;
+}
+.row>.left{
+    border-right:1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.row .search{
+    margin-top:30px;
+}
+.hang{
+    height:30px;
+    margin:15px 0;
+    line-height: 30px;
+    display: flex;
+    padding: 0 10px ;
+    justify-content:space-between ;
+
+}
+.hang>.tubiao{
+    line-height: 30px;
+}
+.left .add-do{
+    position: absolute;
+    left:0;
+    bottom:10px;
+    width:100%;
+    text-align: center;
+
+}
+.add-do .tubiao{
+    margin:auto;
+}
+.nodolist{
+    width:100%;
+    height:30px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.nodolist:hover{
+    background: #F7F7F9;
+}
+.nodolist:hover >input{
+     background: #F7F7F9;
+ }
+input{
+    border:none;
+    outline: none;
+}
+.nodolist>.tubiao{
+    line-height: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transform: opacity 1s linear;
+}
+.nodolist:hover .tubiao{
+    visibility: visible;
+    opacity: 1;
+}
+/*youbian*/
+.right>.header-right{
+    margin-top:10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    line-height: 30px;
+}
+.header-right>.tubiao{
+    width:;20px;
+    height:30px;
+    line-height: 30px;
+}
+.header-right>input{
+    font-size:25px;
+    font-weight:200;
+}
+.rightlist{
+    width:100%;
+    height:40px;
+    border-bottom:1px solid #ccc;
+    line-height: 40px;
+    position:relative;
+    padding: 0 10px;
+}
+.rightlist>span:nth-child(1){
+    position: absolute;
+    left:10px;
+    line-height: 36px;
+    font-size: 10px;
+}
+.rightlist>input{
+    height:36px;
+    font-weight: 400;
+    position: absolute;
+    left: 25px;
+    line-height: 40px;
+}
+.rightlist:hover{
+    background: #F7F7F9;
+}
+.rightlist:hover >input{
+    line-height:40px;
+    background: #F7F7F9;
+}
+.rightlist>.tubiao{
+    position:absolute;
+    right:10px;
+    line-height: 36px;
+    opacity: 0;
+    visibility: hidden;
+    transform: opacity 1s linear;
+}
+.rightlist:hover .tubiao{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+

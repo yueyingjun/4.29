@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>to-do-list</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body >
+    <div class="container-fluid" ng-app="myapp" ng-controller="control">
+        <div class="row">
+            <!--左边-->
+            <div class="left col-xs-5 col-sm-4 col-md-3">
+                <!--search-->
+                <div class="form-group search">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                        <input type="text" class="form-control"  placeholder="搜索" ng-model="search">
+                    </div>
+                </div>
+                <!--已办-->
+                <div class="havedo bg-success hang"  ng-click="showDone()">
+                    <div class="glyphicon glyphicon-ok-sign tubiao">
+                        <span>已办条目</span>
+                    </div>
+
+                    <span>{{done.length}}&nbsp;&nbsp;条</span>
+                </div>
+                <!--未办-->
+                <div class="no-doin" ng-click="showData()">
+                    <div class="no-do bg-warning hang">
+                        <div class="glyphicon glyphicon-remove-sign tubiao">
+                            <span>未办事项</span>
+                        </div>
+                        <span>{{data.length}}&nbsp;&nbsp;项</span>
+                    </div>
+                    <div class="nodolist" ng-repeat="item in data | filter:{title:search} track by item.id">
+                        <input type="text" class=" col-xs-9" ng-model="item.title" placeholder="新建事项" value="新建事项" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                        <span class="tubiao glyphicon glyphicon-trash" ng-click="removeList(item.id)"></span>
+                    </div>
+                </div>
+                <!--添加-->
+                <div class="add-do bg-info hang" ng-click="add()">
+                    <div class="glyphicon glyphicon glyphicon-plus-sign tubiao ">
+                        <span class="text-center">添加事项</span>
+                    </div>
+                </div>
+            </div>
+            <!--左边结束-->
+            <!--右边-->
+            <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+                <div class="header-right">
+                    <input type="text" class=" col-xs-9" placeholder="新建事项" ng-model="currentCon.title" ng-focus="focus(currentCon.id)" ng-blur="blur(currentCon.id)">
+                    <button type="button" class="btn btn-default" ng-click="addOpt()">添加条目</button>
+                </div>
+                <div class="rightlist" ng-repeat="item in currentCon.son track by item.id">
+                    <span class="glyphicon glyphicon-tag" ng-click="doneFun(item.id)"></span>
+                    <input type="text" class=" col-xs-9" placeholder="新建条目" ng-blur="blur()" ng-model="item.title">
+                    <span class="tubiao glyphicon glyphicon-trash" ng-click="delOpt(item.id)"></span>
+                </div>
+
+            </div>
+            <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+                <div class="header-right">
+                    <input type="text" class=" col-xs-9"  value="已办条目">
+                    <button type="button" class="btn btn-default" ng-click="delAll()">删除所有条目</button>
+                </div>
+                <div class="rightlist" ng-repeat="item in done track by item.id">
+                    <span class="glyphicon glyphicon-star" ></span>
+                    <input type="text" class=" col-xs-9" placeholder="新建条目" ng-blur="blur()" ng-model="item.title">
+                    <span class="tubiao glyphicon glyphicon-trash" ng-click="removeDone(item.id)"></span>
+                </div>
+
+            </div>
+            <!--右边结束-->
+        </div>
+    </div>
+</body>
+<script>
+</script>
+</html>
