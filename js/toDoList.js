@@ -9,6 +9,8 @@ angular.module("myApp",[]).controller("wdbctrl",["$scope","$filter",function ($s
     //当前选择的事项
     $scope.nowIndex=0;
     $scope.nowCon=$scope.data[$scope.nowIndex];
+    //控制是否显示完成列表
+    $scope.isshow=true;
     //监控search
     $scope.search="";
     $scope.$watch("search",function(){
@@ -72,7 +74,7 @@ angular.module("myApp",[]).controller("wdbctrl",["$scope","$filter",function ($s
         $scope.nowCon=$scope.data[$scope.nowIndex]
     };
     //失去焦点
-    $scope.blur=function (id) {
+    $scope.blur=function () {
         localStorage.data=JSON.stringify($scope.data);
     };
     //添加栏目
@@ -82,7 +84,6 @@ angular.module("myApp",[]).controller("wdbctrl",["$scope","$filter",function ($s
         obj.title="新建栏目"+obj.id;
         $scope.nowCon.son.push(obj);
         localStorage.data=JSON.stringify($scope.data);
-
     };
     //删除栏目
     $scope.rightDel=function(id){
@@ -99,10 +100,7 @@ angular.module("myApp",[]).controller("wdbctrl",["$scope","$filter",function ($s
         localStorage.data=JSON.stringify($scope.data);
         localStorage.done=JSON.stringify($scope.done);
     };
-
     //完成列表
-    $scope.isshow=true;
-
     $scope.showdone=function(){
         $scope.isshow = false;
     };
@@ -116,5 +114,4 @@ angular.module("myApp",[]).controller("wdbctrl",["$scope","$filter",function ($s
         $scope.done.splice(index,1);
         localStorage.done=JSON.stringify($scope.done);
     };
-
 }]);
