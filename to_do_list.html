@@ -50,19 +50,19 @@
                     </div>
 
                 </div>
-                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+  <div class="right col-sm-8 col-xs-7 col-md-9" ng-show="isshow==true">
+            <div class="header">
+                <div class="title">
+                    {{currentCon.title}}
+                    <!--track by-->
+                </div>
+                <div class="tm">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    <span class="addtm" ng-click="addOpt()">添加条目</span>
+                </div>
+            </div>
 
-                   <div class="header">
-                       <div class="title">
-                           {{currentCon.title}}
-                       </div>
-                       <div>
-                           <span class="glyphicon glyphicon-plus"></span>
-                           <span class="addOpt" ng-click="addOpt()">添加条目</span>
-                       </div>
-                   </div>
-
-           <div class="optBox">
+            <div class="optBox">
                 <div class="opt shixiang" ng-repeat="item in currentCon.son track by item.id">
 
                     <input type="text" class="form-control shuru" ng-model="item.title" ng-blur="blur()">
@@ -73,28 +73,27 @@
 
                 </div>
             </div>
+        </div>
+        <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+
+            <div class="header">
+                <div class="title">
+                    完成列表
+                </div>
+            </div>
+
+            <div class="optBox">
+                <div class="opt shixiang" ng-repeat="item in done track by item.id">
+                    <input type="text" class="form-control shuru" ng-model="item.title" ng-blur="blur()">
 
 
-
-                <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
-
-                    <div class="header">
-                        <div class="title">
-                            完成列表
-                        </div>
-                    </div>
-
-                    <div class="optBox">
-                        <div class="opt" ng-repeat="item in done track by item.id">
-
-
-                            <input type="text" ng-model="item.title" ng-blur="blur()">
-                            <div class="removeOpt glyphicon glyphicon-trash" ng-click="removeDone(item.id)"></div>
-                        </div>
-                    </div>
+                    <span class="glyphicon glyphicon-trash Del"  ng-click="removeDone(item.id)"></span>
 
                 </div>
             </div>
-      </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
