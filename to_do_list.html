@@ -62,18 +62,17 @@
                        </div>
                    </div>
 
-                    <div class="optBox">
-                        <div class="opt" ng-repeat="item in currentCon.son track by item.id">
-                            <div class="doneBtn" ng-click="doneFun(item.id)">
-                                
-                            </div>
+           <div class="optBox">
+                <div class="opt shixiang" ng-repeat="item in currentCon.son track by item.id">
 
-                            <input type="text" ng-model="item.title" ng-blur="blur()">
-                            <div class="removeOpt glyphicon glyphicon-trash" ng-click="delOpt(item.id)"></div>
-                        </div>
-                    </div>
+                    <input type="text" class="form-control shuru" ng-model="item.title" ng-blur="blur()">
+
+
+                    <span class="glyphicon glyphicon-trash Del" aria-hidden="true" ng-click="delOpt(item.id)"></span>
+                    <span class="glyphicon glyphicon-ok Dell" aria-hidden="true" ng-click="doneFun(item.id)"></span>
 
                 </div>
+            </div>
 
 
 
