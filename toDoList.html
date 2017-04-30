@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toDoList</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/toDoList.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toDoList.js"></script>
+</head>
+<body>
+<div class="box" ng-app="myApp" ng-controller="wdbctrl">
+    <div class="left col-lg-3 col-md-3 col-xs-3 col-sm-4">
+        <div class="form-group mySearch">
+            <input type="text" class="form-control" placeholder="Search" ng-model="search" ng-click="showCon()">
+        </div>
+        <div class="all">
+            <div class="panel panel-success">
+                <div class="panel-heading" ng-click="showdone()">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseThree">
+                            已完成
+                            <span class="badge" style="float: right;margin-right:10px;">{{done.length}}</span>
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#collapseTwo">
+                            未完成
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse wdbLeftBox">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills nav-stacked wdbLeftAdd" ng-click="addList()">
+                            <li class="active">
+                                <a href="#">+</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-body everyone" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showCon()">
+                        <input type="text" class="form-control" id="name" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                        <div class="leftDel" ng-click="delList(item.id)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right col-lg-9 col-md-9 col-xs-9 col-sm-8" ng-show="isshow==true">
+        <div class="page-header" style="position: relative">
+            <h1>
+                <small>{{nowCon.title}}</small>
+            </h1>
+            <button type="button" class="btn btn-success" style="position: absolute;
+right:20px;top:10px;" ng-click="rightAdd()">新建栏目</button>
+        </div>
+        <div style="padding: 20px;">
+            <div class="input-group" style="margin-bottom: 20px;"  ng-repeat="item in nowCon.son track by item.id">
+                <span class="input-group-addon" ng-click="over(item.id)">
+                    <input type="checkbox">
+                </span>
+                <input type="text" class="form-control" ng-model="item.title" ng-blur="blur()">
+                <span class="input-group-addon " ng-click="rightDel(item.id)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="right col-lg-9 col-md-9 col-xs-9 col-sm-8" ng-show="isshow==false">
+        <div class="page-header" style="position: relative">
+            <h1>
+                <small>已完成栏目</small>
+            </h1>
+        </div>
+        <div style="padding: 20px;">
+            <div class="input-group" style="margin-bottom: 20px;"  ng-repeat="item in done track by item.id">
+                <input type="text" class="form-control" ng-model="item.title">
+                <span class="input-group-addon " ng-click="removeDone(item.id)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
