@@ -1,0 +1,146 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Title</title>-->
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <!--<script src="js/angular.min.js"></script>-->
+    <!--<link rel="stylesheet" href="css/mylist.css">-->
+    <!--<script src="js/to_to_list.js"></script>-->
+<!--</head>-->
+<!--<body ng-app="myapp">-->
+<!--<div class="container-fluid" ng-controller="constrol">-->
+    <!--<div class="row">-->
+        <!--<div class="left col-md-3 col-sm-4 col-xs-4">-->
+            <!--<div class="search">-->
+                <!--<input type="text" class="form-control" placeholder="search……" ng-model="search">-->
+            <!--</div>-->
+            <!--&lt;!&ndash;事项列表&ndash;&gt;-->
+            <!--<div class="end">-->
+                <!--<div class="endall">-->
+                    <!--<span class="glyphicon glyphicon-th">已完成</span>-->
+                    <!--<span>0</span>-->
+                <!--</div>-->
+                <!--<div class="wite">-->
+                    <!--<span class="glyphicon glyphicon-th-large">待完成</span>-->
+                <!--</div>-->
+                <!--<ul class="list">-->
+                    <!--<li ng-repeat="item in data track by item.id">-->
+                        <!--<span class="glyphicon glyphicon-th-list"></span>-->
+                        <!--<input type="text" value="事件1" ng-model="aa">-->
+                        <!--<span class="glyphicon glyphicon-trash" ng-click="remove(item.id)"></span>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<div class="new">-->
+                    <!--<span class="glyphicon glyphicon-plus" ng-click="add">新建选项</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;右边事件列表&ndash;&gt;-->
+        <!--<div class="right col-md-9 col-sm-8 col-xs-8">-->
+            <!--<div class="rightinput">-->
+                <!--<input type="text" value="事件1" class="rfirst" ng-model="aa">-->
+                <!--<div class="edit">-->
+                    <!--<span class="glyphicon glyphicon-plus">添加条目</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+    <script src="js/to_to_list.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/to_do_list.css">
+</head>
+<body>
+
+<div class="container-fluid" ng-app="myapp">
+    <div class="row" ng-controller="kongzhi">
+        <!--左边-->
+        <div class="col-xs-4 col-md-3 left">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon1">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </span>
+                        <input ng-model="search" type="text" class="form-control" placeholder="title" aria-describedby="sizing-addon1">
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+
+            <div class="left_box">
+                <div class="opt">
+                    <div ng-click="wanchengshixiang()">
+                        <span class="glyphicon glyphicon-th"></span>已完成事项 <span>{{done.length}}</span>
+                    </div>
+                </div>
+
+                <div class="list">
+                    <div ng-click="daibanshixiang()">
+                        <span class="glyphicon glyphicon-th-list"></span>待办事项
+                    </div>
+                    <ul class="evlist">
+                        <!--事项列表-->
+                        <li ng-repeat="i in data | filter:{title:search} track by i.id">
+                            <input type="text" value="新建事项" ng-model="i.title" ng-focus="focus(i.id)" ng-blur="blur(i.id)">
+                            <span class="glyphicon glyphicon-trash" ng-click="delev(i.id)"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="newev">
+                    <div ng-click="addev()">
+                        <span class="glyphicon glyphicon-plus"></span>添加新事项<span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--右边-->
+        <div class="col-xs-8 col-md-9 right">
+            <div class="right_box" ng-show="r_f==1">
+                <div class="title">
+                    <div>{{currentCon.title}}</div>
+                    <div ng-click="addtiaomu(currentCon.id)">新建条目<span class="glyphicon glyphicon-align-justify"></span></div>
+                </div>
+                <div class="tiaomu">
+                    <ul>
+                        <li ng-repeat="i in currentCon.son track by i.id">
+                            <span class="glyphicon glyphicon-heart" ng-click="wancheng(i.id)"></span>
+                            <input type="text" ng-model="i.title" ng-blur="blurtiaomu(i.id)">
+                            <span class="glyphicon glyphicon-trash" ng-click="deltiaomu(i.id)"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right_box" ng-show="r_f==0">
+                <div class="title_wancheng">
+                    <div>已完成的条目</div>
+                </div>
+                <div class="tiaomu">
+                    <ul>
+                        <li ng-repeat="i in done track by i.id">
+                            <div>{{i.title}}<span class="delwancheng glyphicon glyphicon-trash" ng-click="delwancheng(i.id)"></span></div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
