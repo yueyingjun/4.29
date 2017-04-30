@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js1/angular.min.js"></script>
+    <script src="js1/to_do_list.js"></script>
+    <link rel="stylesheet" href="css1/bootstrap.css">
+    <link rel="stylesheet" href="css1/to_do_list.css">
+</head>
+<body>
+    <div class="container-fluid" ng-app="myapp" ng-controller="control">
+        <div class="row">
+            <div class="left col-xs-5 col-sm-4 col-md-3">
+
+                <!--搜索框-->
+                <div class="form-group search">
+                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
+                    </div>
+                </div>
+
+                <!--已完成-->
+                <div class="done">
+                    <span class="glyphicon glyphicon-th"></span>
+                    <span ng-click="showDone()">
+                        已办事项
+                        <span class="num">{{done.length}}</span>
+                    </span>
+                </div>
+
+                <!--待完成-->
+                <div class="undone">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    <span>待办事项</span>
+                </div>
+
+                <div class="listBox">
+                    <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id" ng-click="showNodone()">
+                        <input type="text" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                        <span class="glyphicon glyphicon-trash" ng-click="delThing(item.id)"></span>
+                    </div>
+                </div>
+                <!--添加事项-->
+                <div class="add" ng-click="addThing()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>添加事项</span>
+                </div>
+            </div>
+            <!--右边-->
+            <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==true">
+
+                <div class="header" >
+                    <div class="title">{{currentCon.title}}</div>
+                    <span class="glyphicon glyphicon-plus" ng-click="addList()">添加列表</span>
+                </div>
+
+                <div class="optBox" >
+                    <div class="optlist" ng-repeat="item in currentCon.son track by item.id">
+                        <span class="glyphicon glyphicon-record" ng-click="doneList(item.id)"></span>
+                        <input type="text" ng-model="item.title">
+                        <span class="glyphicon glyphicon-trash" ng-click="delList(item.id)"></span>
+                    </div>
+                </div>
+            </div>
+            <!--已完成列表-->
+            <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+
+                <div class="header" >
+                    <div class="title">已完成列表</div>
+                </div>
+
+                <div class="optBox" >
+                    <div class="optlist" ng-repeat="item in done track by item.id">
+                        <input type="text" ng-model="item.title" ng-blur="blur()">
+                        <span class="glyphicon glyphicon-trash" ng-click="delDone(item.id)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
