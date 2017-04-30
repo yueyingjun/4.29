@@ -12,8 +12,8 @@
 <div class="container-fluid" ng-app="myapp" ng-controller="ctrl">
     <div class="row">
         <div class="left col-sm-4 col-xs-5 col-md-3">
-            <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-            <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search"><br>
+            <!--<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>-->
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="搜索" ng-model="search"><br>
             <div class="dingwei">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="Ftext" ng-click="showdone()">完成事项</span>
@@ -31,10 +31,6 @@
                 </div>
             </div>
 
-            <!--<div class="shixiang">-->
-                <!--<input type="text"  placeholder="新建事项">-->
-                <!--<span ng-click="removeList(id)"></span>-->
-            <!--</div>-->
 
             <div class="add" ng-click="add()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -54,7 +50,7 @@
                 </div>
             </div>
 
-             <div class="optBox">
+            <div class="optBox">
                 <div class="opt shixiang" ng-repeat="item in currentCon.son track by item.id">
 
                     <input type="text" class="form-control shuru" ng-model="item.title" ng-blur="blur()">
@@ -65,28 +61,24 @@
 
                 </div>
             </div>
+        </div>
+        <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
 
-
-            <div class="rights col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
-
-                <div class="header">
-                    <div class="title">
-                        完成列表
-                    </div>
+            <div class="header">
+                <div class="title">
+                    完成列表
                 </div>
-
-                <div class="optBox">
-                    <div class="opt" ng-repeat="item in done track by item.id">
-
-
-                        <input type="text" ng-model="item.title" ng-blur="blur()">
-                        <div class="removeOpt glyphicon glyphicon-trash" ng-click="removeDone(item.id)"></div>
-                    </div>
-                </div>
-
             </div>
 
+            <div class="optBox">
+                <div class="opt shixiang" ng-repeat="item in done track by item.id">
+                    <input type="text" class="form-control shuru" ng-model="item.title" ng-blur="blur()">
 
+
+                    <span class="glyphicon glyphicon-trash Del"  ng-click="removeDone(item.id)"></span>
+
+                </div>
+            </div>
 
         </div>
     </div>
