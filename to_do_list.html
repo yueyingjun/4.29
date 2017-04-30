@@ -1,56 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/to_do_list.css">
-    <script src="js/angular.min.js"></script>
-    <script src="js/to_do_list.js"></script>
+    <title>Title</title>
 </head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/index.css">
+<script src="js/angular.min.js"></script>
+<script src="js/to_do_list.js"></script>
 <body>
-      <div class="container-fluid" ng-app="myapp" ng-controller="ctrl">
-            <div class="row">
-                <div class="left col-xs-5 col-sm-4 col-md-3">
+<div class="container-fluid" ng-app="myapp" ng-controller="ctrl">
+    <div class="row">
+        <div class="left col-sm-4 col-xs-5 col-md-3">
+            <!--<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>-->
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="搜索" ng-model="search"><br>
+            <div class="dingwei">
+                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                <span class="Ftext" ng-click="showdone()">完成事项</span>
+                <span class="badge">{{done.length}}</span>
+            </div>
 
-                    <div class="form-group search">
-                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">搜索</div>
-                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="search" ng-model="search">
-                        </div>
-                    </div>
+            <div class="dingwei">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                <span class="Ftext">代办事项</span>
+                <!--<span class="badge">1</span>-->
 
-
-                    <div class="done">
-                        <span class="glyphicon glyphicon-th"></span>
-                        <span ng-click="showdone()">已完成</span>
-                        <span class="nums">{{done.length}}</span>
-                    </div>
-
-                    <div class="listBox">
-                        <div class="title">
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span>代办事项</span>
-                        </div>
-                        <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showCon()">
-                            <input type="text" value="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
-                            <span class="glyphicon glyphicon-trash removeList" ng-click="removeList(item.id)"></span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="add" ng-click="add()">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span>添加事项</span>
-                    </div>
-
+                <div class="list shixiang" ng-repeat="item in data | filter:{title:search} track by item.id " ng-click="showCon()">
+                    <input type="text" class="form-control shuru" value="新建事项" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                    <span class="glyphicon glyphicon-trash Del" aria-hidden="true" ng-click="removeList(item.id)"></span>
                 </div>
-  <div class="right col-sm-8 col-xs-7 col-md-9" ng-show="isshow==true">
+            </div>
+
+
+            <div class="add" ng-click="add()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="Ftext Icondown">添加事项</span><br>
+            </div>
+
+        </div>
+        <div class="right col-sm-8 col-xs-7 col-md-9" ng-show="isshow==true">
             <div class="header">
                 <div class="title">
                     {{currentCon.title}}
