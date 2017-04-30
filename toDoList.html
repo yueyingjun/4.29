@@ -81,9 +81,6 @@ right:20px;top:10px;" ng-click="rightAdd()">新建栏目</button>
         </div>
         <div style="padding: 20px;">
             <div class="input-group" style="margin-bottom: 20px;"  ng-repeat="item in done track by item.id">
-                <span class="input-group-addon" ng-click="over(item.id)">
-                    <input type="checkbox">
-                </span>
                 <input type="text" class="form-control" ng-model="item.title">
                 <span class="input-group-addon " ng-click="removeDone(item.id)">
                     <span class="glyphicon glyphicon-trash"></span>
