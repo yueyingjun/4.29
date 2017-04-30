@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TO DO LIST</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="JS/angular.min.js"></script>
+    <script src="JS/index.js"></script>
+    <style>
+        html,body{
+            width:100%;height:100%;
+        }
+        .container-fluid{
+            width:100%;height:100%;overflow:hidden;
+        }
+        .row{
+            height:100%;
+        }
+        .left{
+            border-right:1px solid #000;height:100%;box-sizing: border-box;
+            padding-top:10px;position:relative;
+        }
+        .right{
+            height:100%;
+        }
+
+        .list{
+            position: relative;display: flex;
+            justify-content: space-between;
+            align-items: center;margin-top:10px;
+        }
+        .list .del{
+            cursor: pointer;
+            opacity: 0;transition: opacity 1s linear;
+        }
+        .list:hover .del{
+            opacity: 1;
+        }
+        .add{
+           height:30px;position:absolute;cursor: pointer;
+            bottom:10px;text-align: center;line-height:30px;
+        }
+        .header{
+            display: flex;justify-content: space-between;
+            align-items: center;height:5%;border-bottom:1px solid #000;
+        }
+
+        .opt{
+            height:30px; display: flex;justify-content: space-between;align-items: center;
+            position:relative;margin-top:10px;
+        }
+        .opt>input{
+            width:80%;border:none;margin-left:20px;
+        }
+        .circle{
+            width:10px;height:10px;border-radius: 50%;border:1px solid #000;
+            cursor: pointer;position:absolute;left:0;
+        }
+        .opt>span{
+            position:absolute;right:0;top:6px;
+        }
+        /*input{*/
+            /*border:none;*/
+        /*}*/
+    </style>
+</head>
+<body ng-app="myapp" ng-controller="ctrl">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="left col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">搜索</div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="搜索" ng-model="search">
+                    </div>
+                </div>
+                <div class="done"  ng-click="showdone()">
+                    <span class="glyphicon glyphicon-th"></span>
+                    <span>已完成{{done.length}}</span>
+                </div>
+                <div class="wait" >
+                    <div class="title">
+                        <span class="glyphicon glyphicon-th-list "></span>
+                        <span>代办事项</span>
+                    </div>
+                    <div class="list" ng-repeat="item in data | filter:{title:search} track by item.id" ng-click="showCon()">
+                        <input type="text" ng-model="item.title" ng-focus="focus(item.id)" ng-blur="blur(item.id)">
+                        <span class="glyphicon glyphicon-trash del" ng-click="removeList(item.id)"></span>
+                    </div>
+                </div>
+
+                <div class="add" ng-click="add()">
+                    <span class="glyphicon glyphicon-plus">添加事项</span>
+
+                </div>
+            </div>
+            <div class="right col-xs-7 col-sm-7 col-md-9 col-lg-9" ng-show="isshow==true">
+                <div class="header">
+                    <div class="title">
+                        {{currentCon.title}}
+                    </div>
+                    <div >
+                        <span class="glyphicon glyphicon-plus" ng-click="addOpt()">添加条目</span>
+
+                    </div>
+                </div>
+                <div class="optbox">
+                    <div class="opt" ng-repeat="item in currentCon.son  | filter:{title:search} track by item.id" >
+                            <div class="circle"  ng-click="doneFun(item.id)"></div>
+                            <input type="text" ng-model="item.title" ng-blur="blur()">
+
+
+                        <span class="glyphicon glyphicon-trash" ng-click="delOpt(item.id)"></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="right col-xs-7 col-sm-8 col-md-9" ng-show="isshow==false">
+                <div class="header">
+                    <div class="title">
+                        完成列表
+                    </div>
+                </div>
+                <div class="optBox">
+                    <div class="opt" ng-repeat="item in done track by item.id">
+                        <input type="text" ng-model="item.title" ng-blur="blur()">
+                        <div class="removeOpt glyphicon glyphicon-trash" ng-click="removeDone(item.id)"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
