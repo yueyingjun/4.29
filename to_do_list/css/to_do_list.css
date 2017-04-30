@@ -1,0 +1,81 @@
+
+.container-fluid{
+    width:100%;
+    height:700px;
+}
+.container-fluid>.content{
+    height:100%;
+
+}
+.left,.right{
+    height:100%;
+}
+.left{
+    padding-top:20px;
+    background: rgba(0, 255, 234, 0.09);
+    border-right:1px solid #ddd;
+}
+.left  .searchbox{
+    margin-bottom:20px;
+}
+
+.left .createlist{
+    position:fixed;
+    left:20px;
+    bottom:0;
+    height:30px;
+    line-height:30px;
+}
+
+.left .list{
+    height:30px;
+    line-height:30px;
+}
+.left .list .del{
+    visibility: hidden;
+    opacity:0;
+    transition: opacity .5s;
+    float:right;
+}
+
+.left .list:hover .del{
+    visibility: visible;
+    opacity:1;
+}
+.left .list input,.right .optList input{
+    background:rgba(0,0,0,0);
+    border:none;
+}
+
+.right .header{
+    height:30px;
+    line-height:30px;
+    border-bottom:1px solid #ddd;
+}
+.right .header .title{
+    float:left;
+    width:120px;
+    text-align:center;
+}
+.right .header .addOpt{
+    float:right;
+    width:120px;
+    text-align:center;
+}
+
+.right .optList{
+
+}
+
+    /*
+
+
+
+        justify-content: space-between;
+        align-items: center;
+
+     */
+
+.opt{
+    outline: none;
+}
