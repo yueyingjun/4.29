@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/to_do_list.css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/to_do_list.js"></script>
+</head>
+<body>
+
+    <div class="container-fluid" ng-app="todolist">
+        <div class="row content" ng-controller="ctrl">
+            <div class="col-xm-4 col-md-3 left">
+                <div class="row searchbox">
+                    <div class="col-lg-12">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Search for..." ng-model="search">
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+
+                <div class="opt">
+                    <div ng-click="showdone()">
+                        <span class="glyphicon glyphicon-th"></span>已完成条目 <span style="color:red">{{done.length}}条</span>
+                    </div>
+                    <div>
+                        <span class="glyphicon glyphicon-th-list"></span>代办事项 <span style="color:red">{{data.length}}条</span>
+                    </div>
+                    <div ng-click="add()" class="createlist">
+                        <span class="glyphicon glyphicon-plus"></span>新建事项
+                    </div>
+                </div>
+                <div class="list"  ng-repeat="item in data track by item.id">
+                    <div ng-click="currentIndexFun(item.id)">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                        <span><input type="text" ng-model="item.title" ng-blur="blur()"></span>
+                        <span class="del glyphicon glyphicon-trash" ng-click="removeList(item.id)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xm-8 col-md-9 right">
+                <div ng-show="isshow==true">
+                    <div class="header">
+                        <div class="title">{{currentTitle}}</div>
+                        <div class="addOpt" ng-click="addOpt(currentIndex)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            新建条目
+                        </div>
+                    </div>
+                    <div class="optList">
+                        <div class="opt" ng-repeat="item in nowOpts track by item.id">
+                            <span class="glyphicon glyphicon-star-empty" ng-click="addDone(item.id,currentIndex)"></span>
+                            <span><input type="text" ng-model="item.title" ng-blur="blur()" ></span>
+                            <span><span class="del glyphicon glyphicon-trash" ng-click="removeOptList(item.id,currentIndex)"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="isshow==false">
+                    <div class="header">
+                        <div class="title">已完成条目</div>
+                    </div>
+                    <div class="optList">
+                        <div class="opt" ng-repeat="item in done track by item.id">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span>{{item.title}}</span>
+                            <span><span class="del glyphicon glyphicon-trash" ng-click="removeDoneList(item.id)"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    /*
+        localStorage.setItem("aa","bbb");
+
+        var info=[{name:"zhangsan",age:20}];
+
+        localStorage.info=JSON.stringify(info);
+
+        JSON.parse();
+
+        console.log(JSON.stringify(info));
+    */
+
+</script>
+</html>
