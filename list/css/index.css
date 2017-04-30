@@ -68,7 +68,18 @@ html,body{
     opacity: 0;
     transition: 1s;
 }
+
 .shixiang:hover .Del{
+    opacity: 1;
+}
+.Dell{
+    position: absolute;
+    right: 40px;top: 10px;
+    opacity: 0;
+    transition: 1s;
+}
+
+.shixiang:hover .Dell{
     opacity: 1;
 }
 .tm{
