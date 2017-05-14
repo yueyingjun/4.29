@@ -37,6 +37,7 @@ angular.module("myapp",[])
             var obj={};
             obj.id=getMaxId($scope.data);
             obj.title="新建事项"+obj.id;
+            obj.time=$scope.format;
             obj.son=[];
 
             $scope.data.push(obj);
@@ -97,6 +98,7 @@ angular.module("myapp",[])
             var id=getMaxId($scope.currentCon.son);
             obj.id=id;
             obj.title="新建条目"+obj.id;
+            obj.somTime=$scope.format;
             $scope.currentCon.son.push(obj);
 
             localStorage.data=JSON.stringify($scope.data);
@@ -117,6 +119,9 @@ angular.module("myapp",[])
             var obj=$scope.currentCon.son.splice(index,1);
             //2. 要将删除的元素放到done数组里面;
             obj[0].id=getMaxId($scope.done);
+            
+            obj[0].pare=$scope.currentCon.title;
+            obj[0].ti=$scope.currentCon.time;
             $scope.done.push(obj[0]);
             localStorage.data=JSON.stringify($scope.data);
             localStorage.done=JSON.stringify($scope.done);
